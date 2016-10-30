@@ -38,5 +38,8 @@ public class LoginMainPresenter implements LoginMainContract.Presenter{
     public void register(){
         Log.d("test","register");
     }
+    @Override
+    public void login(){
 
+    }
 }

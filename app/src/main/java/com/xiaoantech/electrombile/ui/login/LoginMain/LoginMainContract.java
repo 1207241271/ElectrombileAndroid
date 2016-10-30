@@ -13,6 +13,8 @@ public interface LoginMainContract {
 
         void register();
 
+        void login();
+
         int getBackgroundImage();
     }
 }
