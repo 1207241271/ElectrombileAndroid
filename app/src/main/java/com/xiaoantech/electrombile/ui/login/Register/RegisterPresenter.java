@@ -1,6 +1,12 @@
 package com.xiaoantech.electrombile.ui.login.Register;
 
+import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVMobilePhoneVerifyCallback;
@@ -11,22 +17,37 @@ import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.RequestMobileCodeCallback;
 import com.avos.avoscloud.SaveCallback;
 import com.avos.avoscloud.SignUpCallback;
+import com.xiaoantech.electrombile.R;
 import com.xiaoantech.electrombile.constant.LeanCloudConstant;
 import com.xiaoantech.electrombile.utils.StringUtil;
 
 import java.util.List;
 
+
 /**
  * Created by yangxu on 2016/10/31.
  */
 
-public class RegisterPresenter implements RegisterContract.Presenter{
+public class RegisterPresenter extends FragmentActivity implements RegisterContract.Presenter{
     private final static String     TAG = "RegisterPresenter";
     private RegisterContract.View   mRegisterView;
+    private TimeCount time;
+    private Button identifiedCode ;
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initBtn();
+
+    }
     protected RegisterPresenter(RegisterContract.View registerView){
         this.mRegisterView = registerView;
         mRegisterView.setPresenter(this);
+    }
+
+    private void initBtn(){
+        identifiedCode = (Button)findViewById(R.id.identifiedCode_btn);
+        time = new TimeCount(60000, 1000);
     }
 
     @Override
@@ -45,6 +66,8 @@ public class RegisterPresenter implements RegisterContract.Presenter{
             mRegisterView.showToast("请输入正确的手机号！");
             return;
         }
+
+        time.start();
 
         AVUser user = new AVUser();
 
@@ -138,5 +161,25 @@ public class RegisterPresenter implements RegisterContract.Presenter{
                 }
             }
         });
+    }
+
+    class TimeCount extends CountDownTimer {
+
+        public TimeCount(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            identifiedCode.setClickable(false);
+            identifiedCode.setText(millisUntilFinished / 1000 + "秒");
+        }
+
+        @Override
+        public void onFinish() {
+            identifiedCode.setText("获取验证码");
+            identifiedCode.setClickable(true);
+
+        }
     }
 }
