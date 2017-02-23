@@ -1,0 +1,104 @@
+
+
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:id="@+id/contentPanel"
+    tools:ignore="MissingConstraints">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+
+        app:layout_constraintLeft_toLeftOf="@+id/contentPanel"
+        app:layout_constraintTop_toTopOf="@+id/contentPanel"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/imageView"
+        android:src="@drawable/img_history_dot"
+        tools:ignore="ContentDescription" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timeQuantum_tv"
+        android:text="18:00-18:30"
+        app:layout_constraintLeft_toRightOf="@+id/imageView"
+        app:layout_constraintCenterY_toCenterY="@+id/imageView"
+        tools:layout_editor_absoluteY="6dp" />
+    <com.xiaoantech.electrombile.widget.UnitTextView
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:id="@+id/itinerary_Stv"
+        app:layout_constraintLeft_toLeftOf="@+id/contentPanel"
+        app:layout_constraintRight_toRightOf="@+id/contentPanel"
+        app:layout_constraintTop_toBottomOf="@+id/timeQuantum_tv"
+        app:layout_constraintHorizontal_bias="0.16"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="里程"
+        android:id="@+id/itinerary_tv"
+        android:gravity="center_horizontal"
+        android:textSize="10sp"
+        app:layout_constraintTop_toBottomOf="@+id/itinerary_Stv"
+        app:layout_constraintCenterX_toCenterX="@+id/itinerary_Stv" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:textSize="35sp"
+        android:gravity="center_horizontal"
+        android:text="20"
+        app:layout_constraintLeft_toLeftOf="@+id/contentPanel"
+        app:layout_constraintRight_toRightOf="@+id/contentPanel"
+        app:layout_constraintBottom_toBottomOf="@+id/itinerary_Stv"
+        app:layout_constraintTop_toTopOf="@+id/itinerary_Stv"
+        app:layout_constraintHorizontal_bias="0.48"
+        android:id="@+id/time_Stv" />
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="用时"
+        android:gravity="center_horizontal"
+        android:textSize="10sp"
+        app:layout_constraintCenterX_toCenterX="@+id/time_Stv"
+        app:layout_constraintTop_toBottomOf="@+id/time_Stv"
+        android:id="@+id/time_tv"
+        app:layout_constraintLeft_toLeftOf="@+id/time_Stv"
+        app:layout_constraintRight_toRightOf="@+id/time_Stv"/>
+
+
+    <com.xiaoantech.electrombile.widget.UnitTextView
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        app:layout_constraintLeft_toLeftOf="@+id/contentPanel"
+        app:layout_constraintRight_toRightOf="@+id/contentPanel"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintBottom_toBottomOf="@+id/itinerary_Stv"
+        app:layout_constraintTop_toTopOf="@+id/itinerary_Stv"
+        android:id="@+id/speed_Stv"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="平均速度"
+        android:id="@+id/speed_tv"
+        android:gravity="center_horizontal"
+        android:textSize="10sp"
+        app:layout_constraintCenterX_toCenterX="@+id/speed_Stv"
+        app:layout_constraintTop_toBottomOf="@+id/speed_Stv" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:src="@drawable/img_history_detail"
+        app:layout_constraintRight_toRightOf="@+id/contentPanel"
+        app:layout_constraintCenterY_toCenterY="@+id/contentPanel"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
+        tools:layout_editor_absoluteY="40dp" />
+</android.support.constraint.ConstraintLayout>
