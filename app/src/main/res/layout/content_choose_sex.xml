@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content">
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/constraintLayout_sex_male"
+            tools:ignore="MissingConstraints">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:id="@+id/img_selected_male"
+                android:src="@drawable/btn_unselected"
+                app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_sex_male"
+                android:layout_marginLeft="15dp"
+                app:layout_constraintCenterY_toCenterY="@+id/constraintLayout_sex_male"
+                android:layout_marginStart="15dp"
+                tools:layout_editor_absoluteY="13dp" />
+            <ImageView
+                android:layout_height="25dp"
+                android:layout_width="25dp"
+                android:src="@drawable/img_male"
+                app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_sex_male"
+                app:layout_constraintRight_toRightOf="@+id/constraintLayout_sex_male"
+                app:layout_constraintHorizontal_bias="0.45"
+                app:layout_constraintCenterY_toCenterY="@id/constraintLayout_sex_male"
+                tools:layout_editor_absoluteY="13dp" />
+            <TextView
+                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:text="男"
+                android:gravity="center"
+                android:textSize="24sp"
+                app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_sex_male"
+                app:layout_constraintRight_toRightOf="@+id/constraintLayout_sex_male"
+                app:layout_constraintHorizontal_bias="0.6"
+                app:layout_constraintCenterY_toCenterY="@id/constraintLayout_sex_male"
+                tools:layout_editor_absoluteY="10dp" />
+        </android.support.constraint.ConstraintLayout>
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/constraintLayout_sex_female"
+            tools:ignore="MissingConstraints">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:id="@+id/img_selected_female"
+                android:src="@drawable/btn_unselected"
+                app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_sex_female"
+                android:layout_marginLeft="15dp"
+                app:layout_constraintCenterY_toCenterY="@+id/constraintLayout_sex_female"
+                android:layout_marginStart="15dp"
+                tools:layout_editor_absoluteY="13dp" />
+            <ImageView
+                android:layout_height="25dp"
+                android:layout_width="25dp"
+                android:src="@drawable/img_female"
+                app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_sex_female"
+                app:layout_constraintRight_toRightOf="@+id/constraintLayout_sex_female"
+                app:layout_constraintHorizontal_bias="0.45"
+                app:layout_constraintCenterY_toCenterY="@id/constraintLayout_sex_female"
+                tools:layout_editor_absoluteY="13dp" />
+            <TextView
+                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:text="女"
+                android:gravity="center"
+                android:textSize="24sp"
+                app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_sex_female"
+                app:layout_constraintRight_toRightOf="@+id/constraintLayout_sex_female"
+                app:layout_constraintHorizontal_bias="0.6"
+                app:layout_constraintCenterY_toCenterY="@id/constraintLayout_sex_female"
+                tools:layout_editor_absoluteY="10dp" />
+        </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+</layout>
