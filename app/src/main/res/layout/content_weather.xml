@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <RelativeLayout
+        android:layout_width="280dp"
+        android:layout_height="380dp">
+        <LinearLayout
+            android:layout_width="280dp"
+            android:layout_height="380dp"
+            android:background="@drawable/img_weather_background"
+            android:orientation="vertical">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:id="@+id/constraintLayout_city_and_time"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="XX省•XX市"
+                    android:id="@+id/txt_location"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_city_and_time"
+                    app:layout_constraintRight_toRightOf="@+id/constraintLayout_city_and_time"
+                    app:layout_constraintTop_toTopOf="@+id/constraintLayout_city_and_time"
+                    app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_city_and_time"
+                    app:layout_constraintVertical_bias="0.3"
+                    />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/img_location"
+                    app:layout_constraintLeft_toRightOf="@+id/txt_location"
+                    android:layout_marginLeft="10dp"
+                    app:layout_constraintTop_toTopOf="@+id/txt_location"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_location"
+                    android:layout_marginStart="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10-16,15:20"
+                    android:id="@+id/txt_date_today"
+                    android:textSize="15sp"
+                    app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_city_and_time"
+                    app:layout_constraintRight_toRightOf="@+id/constraintLayout_city_and_time"
+                    app:layout_constraintCenterX_toCenterX="@id/constraintLayout_city_and_time"
+                    app:layout_constraintTop_toTopOf="@+id/constraintLayout_city_and_time"
+                    app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_city_and_time"
+                    app:layout_constraintVertical_bias="0.8"
+                    />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:id="@+id/constraintLayout_weather_today"
+                tools:ignore="MissingConstraints">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/img_weather_cloudy"
+                    android:id="@+id/img_weather_today"
+
+                    app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_weather_today"
+                    app:layout_constraintRight_toRightOf="@+id/view_today_weather"
+                    app:layout_constraintTop_toTopOf="@+id/constraintLayout_weather_today"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_weather_today"
+                    android:layout_marginBottom="20dp"
+                    app:layout_constraintHorizontal_bias="0.7"
+                    />
+                <View
+                    android:layout_height="1dp"
+                    android:layout_width="1dp"
+                    android:id="@+id/view_today_weather"
+                    app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_weather_today"
+                    app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_weather_today"
+                    app:layout_constraintRight_toRightOf="@+id/constraintLayout_weather_today"
+                    app:layout_constraintTop_toTopOf="@+id/constraintLayout_weather_today"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="15"
+                    android:textSize="80sp"
+                    android:id="@+id/txt_today_temperature"
+                    android:gravity="center_vertical|right"
+                    app:layout_constraintLeft_toRightOf="@+id/view_today_weather"
+                    app:layout_constraintRight_toRightOf="@+id/constraintLayout_weather_today"
+                    app:layout_constraintHorizontal_bias="0.3"
+                    app:layout_constraintTop_toTopOf="@+id/constraintLayout_weather_today"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_weather_today"
+                    android:layout_marginBottom="20dp"/>
+                <TextView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:text="o"
+                    android:textSize="25sp"
+                    app:layout_constraintLeft_toRightOf="@+id/txt_today_temperature"
+                    app:layout_constraintTop_toTopOf="@+id/txt_today_temperature"
+                    />
+            </android.support.constraint.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:id="@+id/constraintLayout_weather_second_day"
+                    tools:ignore="MissingConstraints">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="周日 10-14"
+                        android:id="@+id/txt_date_second_day"
+                        app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_weather_second_day"
+                        android:layout_marginLeft="20dp"
+                        app:layout_constraintTop_toTopOf="@+id/constraintLayout_weather_second_day"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"/>
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/img_weather_cloudy"
+                        android:id="@+id/img_weather_second_day"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_date_second_day"
+                        app:layout_constraintLeft_toLeftOf="@+id/txt_date_second_day"
+                        android:layout_marginTop="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txt_temperature_second_day"
+                        android:text="24~18℃"
+                        app:layout_constraintLeft_toRightOf="@+id/img_weather_second_day"
+                        app:layout_constraintBottom_toBottomOf="@+id/img_weather_second_day"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp" />
+                </android.support.constraint.ConstraintLayout>
+
+
+
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:id="@+id/constraintLayout_weather_third_day"
+                    tools:ignore="MissingConstraints">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="周日 10-14"
+                        android:id="@+id/txt_date_third_day"
+                        app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_weather_third_day"
+                        android:layout_marginLeft="20dp"
+                        app:layout_constraintTop_toTopOf="@+id/constraintLayout_weather_third_day"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"/>
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/img_weather_cloudy"
+                        android:id="@+id/img_weather_third_day"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_date_third_day"
+                        app:layout_constraintLeft_toLeftOf="@+id/txt_date_third_day"
+                        android:layout_marginTop="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txt_temperature_third_day"
+                        android:text="24~18℃"
+                        app:layout_constraintLeft_toRightOf="@+id/img_weather_third_day"
+                        app:layout_constraintBottom_toBottomOf="@+id/img_weather_third_day"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp" />
+
+                </android.support.constraint.ConstraintLayout>
+            </LinearLayout>
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@null"
+                android:id="@+id/cancel"
+                android:layout_marginTop="45dp"
+                android:layout_gravity="center_horizontal"/>
+
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+
+
+    </layout>

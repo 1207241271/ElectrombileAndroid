@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <LinearLayout
+
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_style">
+
+
+
+        <TextView
+            android:id="@+id/dialog_txt_carName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:paddingLeft="17dp"
+            android:paddingRight="17dp"
+            android:textColor="#afe9d2"
+            android:textSize="16sp"
+            android:text="车辆名称"/>
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="17dp"
+            android:paddingRight="17dp"
+            android:textColor="#afe9d2"
+            android:textSize="16sp"
+            android:text="最后一次定位地点:"/>
+
+        <TextView
+            android:id="@+id/dialog_txt_LastCarLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="17dp"
+            android:paddingRight="17dp"
+            android:textColor="#afe9d2"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="17dp"
+            android:paddingRight="17dp"
+            android:textColor="#afe9d2"
+            android:textSize="16sp"
+            android:text="最后一次定位时间:"/>
+
+        <TextView
+            android:id="@+id/dialog_txt_LastLocateTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="17dp"
+            android:paddingRight="17dp"
+            android:textColor="#afe9d2"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_marginTop="12dp"
+            android:id="@+id/dialog_txt_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="17dp"
+            android:paddingRight="17dp"
+            android:textColor="#afe9d2"
+            android:textSize="20sp"
+            android:text="状态:正在更新"/>
+
+    </LinearLayout>
+
+</layout>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <data>
+
+    <variable
+        name="presenter"
+        type="com.xiaoantech.electrombile.ui.AddDevice.InputIMEI.InputIMEIContract.Presenter" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <include
+            android:id="@+id/navigation"
+            layout="@layout/bar_navigation_title"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="30dp"
+                app:srcCompat="@drawable/img_imei_input"
+                android:id="@+id/imageView5"
+                app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
+                android:background="@color/avoscloud_feedback_white"
+                android:layout_height="30dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout"
+                android:layout_marginTop="10dp" />
+
+            <EditText
+                android:id="@+id/txt_inputIMEI"
+                android:hint="   输入产品序列号"
+                android:layout_width="330dp"
+                android:background="@color/avoscloud_feedback_white"
+                android:layout_height="50dp"
+                tools:layout_editor_absoluteX="54dp"
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout" />
+
+        </LinearLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/constraintLayout"
+            tools:ignore="MissingConstraints"
+            android:background="@color/background_grey">
+
+            <Button
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:text="确定"
+                app:layout_constraintRight_toRightOf="@+id/constraintLayout"
+                app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
+                app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+                android:onClick="@{() -> presenter.bindIMEI(txtInputIMEI.getText().toString())}"
+                android:textColor="@color/avoscloud_feedback_input_wrap_background"
+                android:textSize="17sp"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/button_yellow"
+                android:id="@+id/button5"
+                android:layout_marginTop="200dp"
+                app:layout_constraintTop_toBottomOf="@+id/txt_inputIMEI"
+                android:layout_marginBottom="100dp" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </LinearLayout>
+
+
+
+</layout>
