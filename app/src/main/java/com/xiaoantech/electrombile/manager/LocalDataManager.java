@@ -2,12 +2,18 @@ package com.xiaoantech.electrombile.manager;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
+import com.alibaba.fastjson.JSON;
 import com.xiaoantech.electrombile.application.App;
 import com.xiaoantech.electrombile.constant.LayoutConstant;
+import com.xiaoantech.electrombile.model.CarInfoModel;
+import com.xiaoantech.electrombile.utils.BitmapUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +37,7 @@ public class LocalDataManager {
 
     private final String IMEI = "IMEI";
     private final String IMEIList = "IMEIList";
+    private final String CarInfoList = "CarInfoList";
 
     private final String MQTTHost = "MQTTHost";
     private final String MQTTPort = "MQTTPort";
@@ -48,6 +55,9 @@ public class LocalDataManager {
     public final String HTTPPort_Test = "8081";
 
 
+    private final String AutoLock = "AutoLock";
+    private final String AutoLockPeriod = "AutoLockPeriod";
+
     private SharedPreferences sharedPreferences;
 
     private  static LocalDataManager mInstance = null;
@@ -64,6 +74,11 @@ public class LocalDataManager {
         sharedPreferences = context.getSharedPreferences(SHARE_PREFERENCES,Context.MODE_PRIVATE);
     }
 
+    public void cleanDevice(){
+        setIMEI("");
+    }
+
+
     public void setIMEI(String imei) {
         sharedPreferences.edit().putString(IMEI,imei).apply();
     }
@@ -74,7 +89,7 @@ public class LocalDataManager {
 
     public void setIMEIList(List<String> imeiList) {
         if (imeiList == null){
-            sharedPreferences.edit().putString(IMEIList," ").apply();
+            sharedPreferences.edit().putString(IMEIList,"").apply();
             return;
         }
 
@@ -89,7 +104,7 @@ public class LocalDataManager {
         List<String> imeiList = new ArrayList<>();
         JSONArray jsonArray;
         try{
-            jsonArray = new JSONArray(sharedPreferences.getString(IMEIList," "));
+            jsonArray = new JSONArray(sharedPreferences.getString(IMEIList,""));
             for (int i = 0; i < jsonArray.length(); i++){
                 imeiList.add(jsonArray.getString(i));
             }
@@ -99,31 +114,70 @@ public class LocalDataManager {
         return imeiList;
     }
 
+    public void setCarInfoList(List<CarInfoModel> carInfoList){
+        if (carInfoList == null){
+            sharedPreferences.edit().putString(CarInfoList,"").apply();
+        }
+
+        JSONArray jsonArray = new JSONArray();
+        JSONObject jsonObject;
+        try {
+            for (CarInfoModel carInfoModel:carInfoList){
+                jsonObject = new JSONObject();
+                jsonObject.put("name",carInfoModel.getName());
+                jsonObject.put("IMEI",carInfoModel.getIMEI());
+                jsonObject.put("bindTime",carInfoModel.getBindTime());
+                jsonObject.put("cropImage", BitmapUtil.convertBitmapTOString(carInfoModel.getCropImage()));
+                jsonArray.put(jsonObject);
+            }
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+        sharedPreferences.edit().putString(CarInfoList,jsonArray.toString()).apply();
+    }
+
+    public List<CarInfoModel> getCarInfoList(){
+        List<CarInfoModel> carInfoList = new ArrayList<>();
+        try {
+            JSONArray jsonArray = new JSONArray(sharedPreferences.getString(CarInfoList," "));
+            for (int i = 0;i<jsonArray.length();i++){
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                CarInfoModel carInfoModel = new CarInfoModel(jsonObject.getString("IMEI"),jsonObject.getLong("bindTime"));
+                carInfoModel.setCropImage(BitmapUtil.convertStringToBitmap(jsonObject.getString("cropImage")));
+                carInfoModel.setName(jsonObject.getString("name"));
+                carInfoList.add(carInfoModel);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return carInfoList;
+    }
+
     public void setMQTTHost(String mqttHost){
         sharedPreferences.edit().putString(MQTTHost,mqttHost).apply();
     }
     public String getMQTTHost() {
-        return sharedPreferences.getString(MQTTHost,MQTTHost_Release);
+        return sharedPreferences.getString(MQTTHost,MQTTHost_Test);
     }
 
     public void setMQTTPort(String mqttPort) {
         sharedPreferences.edit().putString(MQTTPort,mqttPort).apply();
     }
     public String getMQTTPort() {
-        return sharedPreferences.getString(MQTTPort,MQTTPort_Release);
+        return sharedPreferences.getString(MQTTPort,MQTTPort_Test);
     }
 
     public void setHTTPHost(String httpHost) {
         sharedPreferences.edit().putString(HTTPHost,httpHost).apply();
     }
     public String getHTTPHost(){
-        return sharedPreferences.getString(HTTPHost,HTTPHost_Release);
+        return sharedPreferences.getString(HTTPHost,HTTPHost_Test);
     }
     public void setHTTPPort(String httpPort){
         sharedPreferences.edit().putString(HTTPPort,httpPort).apply();
     }
     public String getHTTPPort(){
-        return sharedPreferences.getString(HTTPPort,HTTPPort_Release);
+        return sharedPreferences.getString(HTTPPort,HTTPPort_Test);
     }
 
     public LayoutConstant.MapType getMapType(){
@@ -197,5 +251,21 @@ public class LocalDataManager {
 
     public String getIdentityNum(){
         return sharedPreferences.getString(IdentityNum,"");
+    }
+
+    public void setAutoLock(boolean isOn){
+        sharedPreferences.edit().putBoolean(AutoLock,isOn).apply();
+    }
+
+    public boolean getAutoLock(){
+        return sharedPreferences.getBoolean(AutoLock,false);
+    }
+
+    public void setAutoLockPeriod(int period){
+        sharedPreferences.edit().putInt(AutoLockPeriod,period).apply();
+    }
+
+    public int getAutoLockPeriod(){
+        return sharedPreferences.getInt(AutoLockPeriod,5);
     }
 }

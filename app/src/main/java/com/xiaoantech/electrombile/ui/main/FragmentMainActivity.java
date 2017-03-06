@@ -1,15 +1,19 @@
 package com.xiaoantech.electrombile.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.RadioButton;
 
 import com.xiaoantech.electrombile.R;
+import com.xiaoantech.electrombile.base.BaseAcitivity;
 import com.xiaoantech.electrombile.ui.main.InfoFragment.InfoFragment;
 import com.xiaoantech.electrombile.ui.main.MainFragment.MainFragment;
 import com.xiaoantech.electrombile.ui.main.SettingFragment.SettingFragment;
@@ -24,11 +28,11 @@ public class FragmentMainActivity extends FragmentActivity {
     private ViewPager   mViewPager;
     private RadioButton mainBtn,infoBtn,settingBtn;
     private ArrayList<Fragment> fragmentArrayList;
+    private long exitTime = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_fragment);
         initRadioBtn();
         initFragmentArray();
@@ -78,6 +82,12 @@ public class FragmentMainActivity extends FragmentActivity {
         mViewPager.setAdapter(new FragmentAdapter(getSupportFragmentManager(),fragmentArrayList));
         mViewPager.addOnPageChangeListener(new MyOnPageChangeListener());
         mViewPager.setCurrentItem(0);
+        mViewPager.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return false;
+            }
+        });
     }
 
     public class MyOnPageChangeListener implements ViewPager.OnPageChangeListener{
@@ -97,8 +107,21 @@ public class FragmentMainActivity extends FragmentActivity {
         }
     }
 
+
     @Override
-    public void onBackPressed(){
-        return;
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode==KeyEvent.KEYCODE_BACK && event.getAction()==KeyEvent.ACTION_DOWN){
+            if ((System.currentTimeMillis() - exitTime) > 500)
+            {
+                exitTime = System.currentTimeMillis();
+                return true;
+            } else {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                this.startActivity(intent);
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

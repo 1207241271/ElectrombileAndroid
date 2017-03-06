@@ -48,10 +48,11 @@
                 <com.xiaoantech.electrombile.widget.DrawableTextView
                     style="@style/clickableLayout"
                     android:text="自动设防设置"
+                    android:drawableRight="@drawable/to"
                     android:textSize="17sp"
                     android:textStyle="normal|bold"
-                    android:textColor="@color/avoscloud_feedback_back_background"
-                    android:drawableRight="@drawable/to"/>
+                    android:onClick="@{() -> presenter.gotoAutoLock()}"
+                    android:textColor="@color/avoscloud_feedback_back_background" />
 
 
                 <com.xiaoantech.electrombile.widget.DrawableTextView
@@ -66,6 +67,7 @@
 
                 <com.xiaoantech.electrombile.widget.DrawableTextView
                     style="@style/clickableLayout"
+                    android:onClick="@{() -> presenter.gotoPhoneAlarm()}"
                     android:text="清空缓存"
                     android:textStyle="normal|bold"
                     android:textSize="17sp"
@@ -91,7 +93,8 @@
                 app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
                 android:layout_width="310dp"
                 app:layout_constraintHorizontal_bias="0.6"
-                android:backgroundTint="@color/orange" />
+                android:backgroundTint="@color/orange"
+                android:onClick="@{ () -> presenter.logout()}"/>
 
         </android.support.constraint.ConstraintLayout>
 

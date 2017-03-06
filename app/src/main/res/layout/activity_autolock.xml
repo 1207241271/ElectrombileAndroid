@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="presenter"
+            type="com.xiaoantech.electrombile.ui.main.SettingFragment.activity.SettingManager.AutoLock.AutoLockContract.Presenter"/>
+
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/linearLayout">
+
+        <include
+            android:id="@+id/navigation"
+            layout="@layout/bar_navigation_title"/>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/constraintLayout"
+            tools:ignore="MissingConstraints">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text="自动设防"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:layout_marginLeft="30dp"
+                app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout"
+                app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+                android:layout_marginStart="30dp" />
+
+
+            <Button
+                android:layout_width="88dp"
+                android:layout_height="40dp"
+                android:text="已开启"
+                android:background="@drawable/shape"
+                android:id="@+id/btn_autolock"
+                android:onClick="@{ () -> presenter.changeAutoLock()}"
+                android:layout_marginRight="20dp"
+                app:layout_constraintRight_toRightOf="@+id/constraintLayout"
+                app:layout_constraintTop_toTopOf="@id/constraintLayout"
+                app:layout_constraintBottom_toBottomOf="@id/constraintLayout"/>
+        </android.support.constraint.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@color/background_grey"/>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/constraintLayout_5_minutes"
+            android:onClick="@{ () -> presenter.changeAutoLockPeriod(5) }"
+            tools:ignore="MissingConstraints">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="5分钟"
+                android:textSize="20sp"
+                android:layout_marginLeft="20dp"
+                app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_5_minutes"
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout_5_minutes"
+                app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_5_minutes"
+                android:layout_marginStart="20dp" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/btn_unselected"
+                android:id="@+id/img_5_minutes"
+                app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_5_minutes"
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout_5_minutes"
+                app:layout_constraintRight_toRightOf="@+id/constraintLayout_5_minutes"
+                android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/background_grey"/>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/constraintLayout_10_minutes"
+            android:onClick="@{ () -> presenter.changeAutoLockPeriod(10) }"
+            tools:ignore="MissingConstraints">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text="10分钟"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:layout_marginLeft="20dp"
+                app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_10_minutes"
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout_10_minutes"
+                app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_10_minutes"
+                android:layout_marginStart="20dp" />
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/btn_unselected"
+                android:id="@+id/img_10_minutes"
+                app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_10_minutes"
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout_10_minutes"
+                app:layout_constraintRight_toRightOf="@+id/constraintLayout_10_minutes"
+                android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp" />
+        </android.support.constraint.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/background_grey"/>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/constraintLayout_15_minutes"
+            android:onClick="@{ () -> presenter.changeAutoLockPeriod(15) }"
+            tools:ignore="MissingConstraints">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text="15分钟"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:layout_marginLeft="20dp"
+                app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_15_minutes"
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout_15_minutes"
+                app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_15_minutes"
+                android:layout_marginStart="20dp" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/btn_unselected"
+                android:layout_marginRight="20dp"
+                android:id="@+id/img_15_minutes"
+                app:layout_constraintRight_toRightOf="@+id/constraintLayout_15_minutes"
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout_15_minutes"
+                app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_15_minutes"
+                android:layout_marginEnd="20dp" />
+        </android.support.constraint.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background_grey"/>
+    </LinearLayout>
+
+</layout>

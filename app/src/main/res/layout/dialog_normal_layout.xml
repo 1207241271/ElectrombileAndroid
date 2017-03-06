@@ -20,6 +20,7 @@
                 android:layout_height="40.0dip"
                 android:gravity="center"
                 android:visibility="visible"
+                android:textSize="25sp"
                 android:textColor="@color/appOrange"/>
 
             <LinearLayout
@@ -32,7 +33,7 @@
                     android:id="@+id/message"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="left|center"
+                    android:gravity="center"
                     android:lineSpacingMultiplier="1.5"
                     android:minHeight="120.0dip"
                     android:paddingBottom="15.0dip"

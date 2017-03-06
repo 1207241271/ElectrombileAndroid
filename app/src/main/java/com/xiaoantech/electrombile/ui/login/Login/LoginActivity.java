@@ -89,4 +89,5 @@ public class LoginActivity extends BaseAcitivity implements LoginContract.View{
     public void gotoBindDevice() {
 
     }
+
 }

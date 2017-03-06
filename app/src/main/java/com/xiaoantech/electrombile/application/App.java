@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 
+import com.avos.avoscloud.AVAnalytics;
 import com.avos.avoscloud.AVOSCloud;
 import com.avos.avoscloud.AVUser;
 import com.baidu.mapapi.SDKInitializer;
@@ -36,6 +37,7 @@ public class App extends Application {
         MqttManager.getInstance().createConnect();
         SDKInitializer.initialize(this);
         AVOSCloud.initialize(this,"5wk8ccseci7lnss55xfxdgj9xn77hxg3rppsu16o83fydjjn","yovqy5zy16og43zwew8i6qmtkp2y6r9b18zerha0fqi5dqsw");
+        AVAnalytics.enableCrashReport(this,true);
         checkUserStatus();
     }
 
@@ -44,13 +46,12 @@ public class App extends Application {
         AVUser user = AVUser.getCurrentUser();
         if (null != user){
             //已经有登陆状态
-            if(null != LocalDataManager.getInstance().getIMEI()) {
+            if(null != LocalDataManager.getInstance().getIMEI() && !LocalDataManager.getInstance().getIMEI().isEmpty()) {
                 MqttManager.getInstance().subscribe(LocalDataManager.getInstance().getIMEI());
-                MqttPublishManager.getInstance().getStatus(LocalDataManager.getInstance().getIMEI());
                 gotoFragmentActivity();
 
                 //TODO: 暂时直接从服务器获取，之后本地化
-                BasicDataManager.getInstance().fetchBasicDataIMEIList();
+                BasicDataManager.getInstance().initFromLocal();
             }else {
                 gotoLoginActivity();
             }
