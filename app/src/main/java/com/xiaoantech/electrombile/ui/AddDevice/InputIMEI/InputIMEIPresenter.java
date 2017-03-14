@@ -1,6 +1,11 @@
 package com.xiaoantech.electrombile.ui.AddDevice.InputIMEI;
 
+import com.xiaoantech.electrombile.event.LeanCloud.BindEvent;
 import com.xiaoantech.electrombile.leancloud.LeanCloudManager;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 /**
  * Created by yangxu on 2016/12/15.
@@ -17,12 +22,12 @@ public class InputIMEIPresenter implements InputIMEIContract.Presenter{
     }
     @Override
     public void subscribe() {
-
+        EventBus.getDefault().register(this);
     }
 
     @Override
     public void unsubscribe() {
-
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -33,5 +38,10 @@ public class InputIMEIPresenter implements InputIMEIContract.Presenter{
             mInputIMEIView.showWaitingDialog("正在绑定中");
             LeanCloudManager.getInstance().bindIMEI(IMEI);
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onBindEvent(BindEvent event){
+        mInputIMEIView.bindResult(event.getBindResult());
     }
 }

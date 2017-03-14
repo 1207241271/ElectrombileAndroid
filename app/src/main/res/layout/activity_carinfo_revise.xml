@@ -36,14 +36,14 @@
 
 
             <ImageView
+                android:id="@+id/imageView4"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="150dp"
+                android:background="@drawable/bb"
                 app:layout_constraintBottom_toTopOf="@+id/view"
-                app:layout_constraintTop_toTopOf="@+id/constraintLayout"
                 app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
                 app:layout_constraintRight_toRightOf="@+id/constraintLayout"
-                android:id="@+id/imageView4"
-                android:background="@drawable/bb" />
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout" />
 
             <View
                 android:layout_width="1dp"
@@ -57,7 +57,7 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/imageView4"
                 app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
                 app:layout_constraintRight_toRightOf="@+id/constraintLayout"
@@ -67,7 +67,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="100px"
                     android:layout_weight="1"
                     android:orientation="horizontal"
                     >
@@ -76,9 +76,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
-                        android:text="   车辆名称"
+                        android:text="车辆名称"
+                        android:layout_marginLeft="33px"
                         android:gravity="center"
-                        android:textSize="19sp"
+                        android:textSize="35px"
                         android:textColor="@color/avoscloud_feedback_thread_header_background"
                         android:textAlignment="textStart" />
 
@@ -89,21 +90,22 @@
                         android:gravity="center_vertical"
                         android:text="@{carInfo.IMEI}"
                         android:id="@+id/txt_car_name"
-                        android:hint="        请输入车辆名称"
-                        android:textSize="16sp"
+                        android:hint="请输入车辆名称"
+                        android:layout_marginLeft="50px"
+                        android:textSize="35px"
                         android:textColor="@color/grey_txt"
                         android:background="@null"/>
 
                 </LinearLayout>
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_width="670px"
+                    android:layout_height="3px"
                     android:background="@color/background_grey"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="100px"
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
@@ -111,9 +113,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
-                        android:text="   车牌号"
+                        android:text="车牌号"
+                        android:layout_marginLeft="33px"
                         android:gravity="center"
-                        android:textSize="19sp"
+                        android:textSize="35px"
                         android:textColor="@color/avoscloud_feedback_thread_header_background"
                         android:textAlignment="textStart" />
 
@@ -124,21 +127,22 @@
                         android:gravity="center_vertical"
                         android:text="@{carInfo.name}"
                         android:id="@+id/txt_plate_num"
-                        android:hint="        请输入车牌号"
-                        android:textSize="16sp"
+                        android:hint="请输入车牌号"
+                        android:layout_marginLeft="50px"
+                        android:textSize="35px"
                         android:textColor="@color/grey_txt"
                         android:background="@null"/>
 
                 </LinearLayout>
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_width="670px"
+                    android:layout_height="3px"
                     android:background="@color/background_grey"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="100px"
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
@@ -146,9 +150,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
-                        android:text="   车架号"
+                        android:text="车架号"
+                        android:layout_marginLeft="33px"
                         android:gravity="center"
-                        android:textSize="19sp"
+                        android:textSize="35px"
                         android:textColor="@color/avoscloud_feedback_thread_header_background"
                         android:textAlignment="textStart" />
 
@@ -159,21 +164,22 @@
                         android:gravity="center_vertical"
                         android:text="@{String.valueOf(carInfo.bindTime) }"
                         android:id="@+id/txt_frame_num"
-                        android:hint="        请输入车架号"
-                        android:textSize="16sp"
+                        android:hint="请输入车架号"
+                        android:layout_marginLeft="50px"
+                        android:textSize="35px"
                         android:textColor="@color/grey_txt"
                         android:background="@null"/>
 
                 </LinearLayout>
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_width="670px"
+                    android:layout_height="3px"
                     android:background="@color/background_grey"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="100px"
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
@@ -181,9 +187,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
-                        android:text="   电池型号"
+                        android:text="电池型号"
+                        android:layout_marginLeft="35px"
                         android:gravity="center"
-                        android:textSize="19sp"
+                        android:textSize="35px"
                         android:textColor="@color/avoscloud_feedback_thread_header_background"
                         android:textAlignment="textStart" />
                     <EditText
@@ -192,31 +199,37 @@
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical"
                         android:id="@+id/txt_battery_version"
-                        android:hint="        请选择电池型号"
-                        android:textSize="16sp"
+                        android:hint="请选择电池型号"
+                        android:layout_marginLeft="50px"
+                        android:textSize="35px"
                         android:textColor="@color/grey_txt"
                         android:background="@null"/>
 
                 </LinearLayout>
             </LinearLayout>
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="20px"
+                android:background="@color/background_grey"/>
+
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:background="@color/avoscloud_feedback_white"
                 android:id="@+id/linearLayout3"
                 app:layout_constraintRight_toRightOf="@+id/constraintLayout"
                 app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10px"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
-                android:layout_marginBottom="110dp"
+                android:layout_marginBottom="150px"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintVertical_bias="0.33"
                 app:layout_constraintBottom_toBottomOf="@+id/constraintLayout">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="100px"
                     android:layout_weight="1"
                     android:orientation="horizontal"
                     >
@@ -225,9 +238,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
-                        android:text="   品牌"
+                        android:text="品牌"
+                        android:layout_marginLeft="33px"
                         android:gravity="center"
-                        android:textSize="19sp"
+                        android:textSize="35px"
                         android:textColor="@color/avoscloud_feedback_thread_header_background"
                         android:textAlignment="textStart" />
 
@@ -238,21 +252,22 @@
                         android:gravity="center_vertical"
                         android:text="@{carInfo.IMEI}"
                         android:id="@+id/txt_brand_name"
-                        android:hint="        请输入车辆品牌"
-                        android:textSize="16sp"
+                        android:hint="请输入车辆品牌"
+                        android:layout_marginLeft="50px"
+                        android:textSize="35px"
                         android:textColor="@color/grey_txt"
                         android:background="@null"/>
 
                 </LinearLayout>
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_width="670px"
+                    android:layout_height="3px"
                     android:background="@color/background_grey"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="100px"
                     android:layout_weight="1"
                     android:orientation="horizontal"
                     >
@@ -260,9 +275,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
-                        android:text="   厂家电话"
+                        android:text="厂家电话"
+                        android:layout_marginLeft="33px"
                         android:gravity="center"
-                        android:textSize="19sp"
+                        android:textSize="35px"
                         android:textColor="@color/avoscloud_feedback_thread_header_background"
                         android:textAlignment="textStart" />
                     <EditText
@@ -272,11 +288,11 @@
                         android:gravity="center_vertical"
                         android:text="@{carInfo.IMEI}"
                         android:id="@+id/txt_vender_phone"
-                        android:hint="        请输入厂家电话"
-                        android:textSize="16sp"
+                        android:hint="请输入厂家电话"
+                        android:layout_marginLeft="50px"
+                        android:textSize="35px"
                         android:textColor="@color/grey_txt"
                         android:background="@null"/>
-
                 </LinearLayout>
 
             </LinearLayout>
@@ -288,15 +304,15 @@
                 app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintRight_toRightOf="@+id/constraintLayout"
-                android:textSize="20sp"
-                android:layout_width="0dp"
+                android:textSize="35px"
+                android:layout_width="650px"
                 app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
-                android:layout_marginBottom="34dp"
+                android:layout_marginBottom="90px"
                 android:id="@+id/button3"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="45px"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
                 android:background="@drawable/shape"
-                android:layout_height="45dp" />
+                android:layout_height="90px" />
 
         </android.support.constraint.ConstraintLayout>
     </LinearLayout>

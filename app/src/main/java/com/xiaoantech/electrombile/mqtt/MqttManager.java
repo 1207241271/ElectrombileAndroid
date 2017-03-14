@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.xiaoantech.electrombile.constant.ServiceConstant;
 import com.xiaoantech.electrombile.manager.DeviceInfoManager;
+import com.xiaoantech.electrombile.manager.LocalDataManager;
 
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
@@ -58,7 +59,7 @@ public class MqttManager {
             connectOptions = new MqttConnectOptions();
             connectOptions.setMqttVersion(MqttConnectOptions.MQTT_VERSION_3_1_1);
             connectOptions.setCleanSession(clean);
-            String url = "tcp://" + ServiceConstant.MQTT_HOST + ":" +ServiceConstant.PORT;
+            String url = "tcp://" + LocalDataManager.getInstance().getMQTTHost() + ":" +LocalDataManager.getInstance().getMQTTPort();
             mClient = new MqttClient(url,DeviceInfoManager.getDeviceId(),dataStore);
             mClient.setCallback(mCallback);
             flag = doConnect();

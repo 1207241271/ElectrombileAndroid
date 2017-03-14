@@ -48,4 +48,5 @@ public class LoginMainActivity extends BaseAcitivity implements LoginMainContrac
         Intent intent = new Intent(LoginMainActivity.this, RegisterActivity.class);
         startActivity(intent);
     }
+
 }

@@ -33,7 +33,7 @@
                 android:orientation="vertical"
                 app:layout_constraintRight_toRightOf="@+id/constraintLayout"
                 app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="100px"
                 app:layout_constraintTop_toTopOf="@+id/constraintLayout"
                 app:layout_constraintBottom_toTopOf="@+id/view"
 
@@ -45,15 +45,16 @@
                     android:layout_width="match_parent"
                     android:layout_weight="1"
                     android:orientation="horizontal"
-                    android:layout_height="50dp">
+                    android:layout_height="100px">
 
                     <TextView
                         android:layout_height="match_parent"
                         android:text="新密码"
-                        android:gravity="center"
-                        android:textSize="20sp"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="33px"
+                        android:textSize="35px"
                         android:textColor="@color/avoscloud_feedback_thread_header_background"
-                        android:layout_width="112dp" />
+                        android:layout_width="150px" />
 
                     <EditText
                         android:layout_width="match_parent"
@@ -61,9 +62,10 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:hint="6-20位数字或字母"
+                        android:background="@null"
                         android:id="@+id/edt_pass_1"
                         android:textColor="@color/grey_txt"
-                        android:textSize="16sp" />
+                        android:textSize="35px" />
                 </LinearLayout>
 
                 <View
@@ -75,14 +77,15 @@
                     android:layout_width="match_parent"
                     android:layout_weight="1"
                     android:orientation="horizontal"
-                    android:layout_height="50dp">
+                    android:layout_height="100px">
 
                     <TextView
-                        android:layout_width="111dp"
+                        android:layout_width="150px"
                         android:layout_height="match_parent"
-                        android:text="确认密码:"
-                        android:gravity="center"
-                        android:textSize="20sp"
+                        android:text="确认密码"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="33px"
+                        android:textSize="35px"
                         android:textColor="@color/avoscloud_feedback_thread_header_background" />
 
                     <EditText
@@ -93,7 +96,8 @@
                         android:gravity="center_vertical"
                         android:id="@+id/edt_pass_2"
                         android:textColor="@color/grey_txt"
-                        android:textSize="16sp" />
+                        android:textSize="35px"
+                        android:background="@null"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -108,15 +112,15 @@
                 app:layout_constraintVertical_bias="0.3" />
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="650px"
+                android:layout_height="90px"
                 android:text="确定并登陆"
                 app:layout_constraintRight_toRightOf="@+id/constraintLayout"
                 app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
                 app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
                 app:layout_constraintVertical_bias="0.9"
                 android:onClick="@{() -> presenter.changePassword(edtPass1.getText().toString(),edtPass2.getText().toString())}"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="450px"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"

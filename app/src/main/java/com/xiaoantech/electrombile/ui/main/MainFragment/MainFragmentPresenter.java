@@ -70,9 +70,6 @@ public class MainFragmentPresenter implements MainFragmentContract.Presenter,OnG
         mSearch = GeoCoder.newInstance();
         mSearch.setOnGetGeoCodeResultListener(this);
 
-        MqttPublishManager.getInstance().getStatus(BasicDataManager.getInstance().getBindIMEI());
-        getItinerary();
-        getWeatherInfo();
     }
 
     @Override
@@ -212,6 +209,11 @@ public class MainFragmentPresenter implements MainFragmentContract.Presenter,OnG
     }
 
     @Override
+    public void gotoMessage() {
+        mMainFragmentView.gotoMessage();
+    }
+
+    @Override
     public List<Map<String, Object>> getCarListInfo() {
         List<String> carNameList = BasicDataManager.getInstance().getIMEIList();
 
@@ -271,7 +273,7 @@ public class MainFragmentPresenter implements MainFragmentContract.Presenter,OnG
         try{
             int code = jsonObject.getInt("code");
             if (code !=0 && code != 103){
-                dealWithErrorCode(code);
+                dealWithHTTPErrorCode(code);
             }else if (event.getCmdType() == EventBusConstant.cmdType.CMD_TYPE_BATTERY){
                 JSONObject result = jsonObject.getJSONObject("result");
                 mMainFragmentView.changeBattery(result.getInt("percent"),true);
@@ -285,6 +287,15 @@ public class MainFragmentPresenter implements MainFragmentContract.Presenter,OnG
             mMainFragmentView.showToast("服务器内部错误!");
         }else  if (errorCode == 102){
             mMainFragmentView.showToast("设备离线，请检查设备！");
+            //TODO:ErrorShow
+        }
+    }
+
+    private void dealWithHTTPErrorCode(int errorCode){
+        if (errorCode == 100){
+            mMainFragmentView.showToast("服务器内部错误!");
+        }else  if (errorCode == 102){
+            mMainFragmentView.showToast("无内容，请检查设备！");
             //TODO:ErrorShow
         }
     }

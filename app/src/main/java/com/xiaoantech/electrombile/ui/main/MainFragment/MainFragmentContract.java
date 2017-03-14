@@ -25,6 +25,7 @@ public interface MainFragmentContract {
         void changeCar();
         void gotoMap();
         void showWeatherDialog(JSONObject weatherInfo,String placeInfo);
+        void gotoMessage();
     }
 
     interface Presenter extends BasePresenter{
@@ -43,5 +44,9 @@ public interface MainFragmentContract {
         void gotoMap();
 
         void changeCar();
+
+        void gotoMessage();
+
+        void getWeatherInfo();
     }
 }

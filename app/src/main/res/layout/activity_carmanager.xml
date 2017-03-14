@@ -27,20 +27,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_editor_absoluteX="0dp"
-            app:layout_editor_absoluteY="80dp"
+            app:layout_editor_absoluteY="0dp"
             tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="80dp"
+            tools:layout_editor_absoluteY="0dp"
             tools:ignore="MissingConstraints"
             android:background="@color/background_grey">
 
             <ImageView
-                android:layout_width="384dp"
-                android:layout_height="108dp"
                 android:id="@+id/imageView3"
-                android:onClick="@{ () -> presenter.gotoBindedCarInfo()}"
-                tools:layout_editor_absoluteY="25dp"
-                tools:layout_editor_absoluteX="0dp"
-                android:background="@android:color/white" />
+                android:layout_width="720px"
+                android:layout_height="100dp"
+                android:background="@android:color/white"
+                android:onClick="@{ () -> presenter.gotoBindedCarInfo()}" />
 
             <ImageView
                 android:layout_width="50dp"
@@ -49,7 +47,7 @@
                 app:layout_constraintLeft_toLeftOf="@+id/imageView3"
                 app:layout_constraintCenterY_toCenterY="@+id/imageView3"
                 android:layout_marginStart="16dp"
-                tools:layout_editor_absoluteY="54dp"
+                tools:layout_editor_absoluteY="75dp"
                 android:background="@drawable/othercar" />
 
             <TextView
@@ -61,7 +59,7 @@
                 app:layout_constraintCenterY_toCenterY="@+id/img_bind_car"
                 app:layout_constraintLeft_toRightOf="@+id/img_bind_car"
                 android:layout_marginStart="24dp"
-                tools:layout_editor_absoluteY="67dp"
+                tools:layout_editor_absoluteY="88dp"
                 android:textColor="@color/avoscloud_feedback_thread_header_background" />
 
             <View
@@ -100,12 +98,12 @@
                 android:layout_width="0dp"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_fragment_setting"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="100dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                app:layout_constraintHorizontal_bias="0.43"
-                app:layout_constraintVertical_bias="0.39"
-                android:background="@drawable/shape" />
+                app:layout_constraintVertical_bias="0.391"
+                android:background="@drawable/shape"
+                android:layout_marginTop="100dp" />
 
             <ListView
                 android:layout_width="0dp"
@@ -122,12 +120,14 @@
             <TextView
                 android:text="其他车辆"
                 android:layout_width="0dp"
-                android:layout_height="32dp"
+                android:layout_height="90px"
+                android:gravity="center"
+                android:textAlignment="textStart"
                 android:id="@+id/textView2"
                 app:layout_constraintRight_toRightOf="@+id/constraintLayout_fragment_setting"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="33px"
                 app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_fragment_setting"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="3px"
                 app:layout_constraintTop_toBottomOf="@+id/imageView3"
                 android:textSize="17sp"
                 android:textColor="@color/avoscloud_feedback_thread_header_background" />

@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.xiaoantech.electrombile.R;
@@ -89,4 +90,5 @@ public class LoginActivity extends BaseAcitivity implements LoginContract.View{
     public void gotoBindDevice() {
 
     }
+
 }
