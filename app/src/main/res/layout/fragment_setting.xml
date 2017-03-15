@@ -20,8 +20,8 @@
         android:background="@color/background_grey">
 
         <ImageView
-            android:layout_width="368dp"
-            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_height="215dp"
             app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_fragment_setting"
             app:layout_constraintRight_toRightOf="@+id/constraintLayout_fragment_setting"
             app:layout_constraintTop_toTopOf="@+id/constraintLayout_fragment_setting"
@@ -29,13 +29,12 @@
             android:id="@+id/imageView3" />
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:id="@+id/imageView2"
             app:layout_constraintTop_toTopOf="@+id/constraintLayout_fragment_setting"
             app:layout_constraintLeft_toLeftOf="@+id/imageView3"
              />
-
         <View
             android:layout_width="1dp"
             android:layout_height="1dp"
@@ -56,73 +55,75 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100px"
                 android:orientation="horizontal">
 
 
                 <com.xiaoantech.electrombile.widget.DrawableTextView
-                    android:layout_height="50dp"
+                    android:layout_height="match_parent"
                     android:layout_width="match_parent"
                     android:drawableLeft="@drawable/img_setting_car"
                     android:drawableRight="@drawable/to"
                     app:compoundDrawableHeight="25dp"
                     app:compoundDrawableWidth="25dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="33px"
                     android:text="    车辆管理"
                     android:gravity="center_vertical"
                     android:onClick="@{() -> presenter.gotoCarManager()}"
-                    android:textSize="19sp" />
+                    android:textSize="40px" />
 
             </LinearLayout>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/background_grey"/>
+                android:layout_width="680px"
+                android:layout_height="3px"
+                android:background="@color/background_grey"
+                android:layout_gravity="center"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100px"
                 android:orientation="horizontal">
                 <com.xiaoantech.electrombile.widget.DrawableTextView
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="match_parent"
                     android:text="    车主信息"
                     android:drawableLeft="@drawable/img_setting_user"
                     android:drawableRight="@drawable/to"
                     app:compoundDrawableHeight="25dp"
                     app:compoundDrawableWidth="25dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="33px"
                     android:gravity="center_vertical"
                     android:onClick="@{() -> presenter.gotoUserManager()}"
-                    android:textSize="19sp" />
+                    android:textSize="40px" />
 
             </LinearLayout>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/background_grey"/>
+                android:layout_width="680px"
+                android:layout_height="3px"
+                android:background="@color/background_grey"
+                android:layout_gravity="center"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100px"
                 android:orientation="horizontal"
                 >
 
 
                 <com.xiaoantech.electrombile.widget.DrawableTextView
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="6dp"
+                    android:layout_height="match_parent"
                     android:text="    地图下载"
                     android:gravity="center_vertical"
                     android:drawableLeft="@drawable/img_setting_download"
                     android:drawableRight="@drawable/to"
                     app:compoundDrawableHeight="25dp"
                     app:compoundDrawableWidth="25dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="33px"
                     android:onClick="@{() -> presenter.gotoMapDownload()}"
-                    android:textSize="19sp" />
+                    android:textSize="40px" />
             </LinearLayout>
 
             <LinearLayout
@@ -134,48 +135,49 @@
             
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100px"
 
                 >
 
                 <com.xiaoantech.electrombile.widget.DrawableTextView
+                    android:id="@+id/drawableTextView"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:text="    设置"
-                    android:gravity="center_vertical"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="33px"
                     android:drawableLeft="@drawable/img_setting_setting"
                     android:drawableRight="@drawable/to"
-
-                    app:compoundDrawableHeight="25dp"
-                    app:compoundDrawableWidth="25dp"
-                    android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
                     android:onClick="@{() -> presenter.gotoSettingManager()}"
-                    android:textSize="19sp" />
+                    android:text="    设置"
+                    android:textSize="40px"
+                    app:compoundDrawableHeight="25dp"
+                    app:compoundDrawableWidth="25dp" />
             </LinearLayout>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/background_grey"/>
+                android:layout_width="680px"
+                android:layout_height="3px"
+                android:background="@color/background_grey"
+                android:layout_gravity="center"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="100px"
                 android:orientation="horizontal"
                 >
 
                 <com.xiaoantech.electrombile.widget.DrawableTextView
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="match_parent"
                     android:text="    关于小安宝"
                     android:gravity="center_vertical"
                     android:drawableLeft="@drawable/img_setting_info"
                     android:drawableRight="@drawable/to"
                     app:compoundDrawableHeight="25dp"
                     app:compoundDrawableWidth="25dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="33px"
                     android:onClick="@{() -> presenter.gotoAboutUs()}"
-                    android:textSize="19sp" />
+                    android:textSize="40px" />
 
             </LinearLayout>
 

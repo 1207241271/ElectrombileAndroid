@@ -2,11 +2,13 @@ package com.xiaoantech.electrombile.base;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.xiaoantech.electrombile.constant.TimerConstant;
@@ -55,5 +57,8 @@ public abstract class BaseFragment extends Fragment {
     public void hideWaitingDialog() {
         mProgressDialog.cancel();
     }
+
+
+
 
 }

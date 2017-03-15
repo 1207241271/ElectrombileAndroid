@@ -4,6 +4,7 @@
     <color name="grey_txt">#e7e7e7</color>
     <color name="button_grey">#aaaaaa</color>
     <color name="button_yellow">#f8c035</color>
+    <color name="background_lightgrey">#F2F2F2</color>
     <color name="background_grey">#ebebeb</color>
     <color name="white">#FFFFFF</color><!--白色 -->
     <color name="ivory">#FFFFF0</color><!--象牙色 -->

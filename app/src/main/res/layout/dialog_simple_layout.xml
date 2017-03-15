@@ -18,6 +18,7 @@
             android:layout_width="fill_parent"
             android:layout_height="40.0dip"
             android:gravity="center"
+            android:textSize="25sp"
             android:visibility="visible"
             android:textColor="@color/appOrange"/>
 
@@ -31,7 +32,7 @@
                 android:id="@+id/message"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left|center"
+                android:gravity="center"
                 android:lineSpacingMultiplier="1.5"
                 android:minHeight="180.0dip"
                 android:paddingBottom="15.0dip"

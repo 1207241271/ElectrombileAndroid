@@ -67,13 +67,6 @@ public class CaptureActivity extends Activity implements SurfaceHolder.Callback{
         Message msg = Message.obtain();
         mHandler.sendMessageDelayed(msg,3000);
 
-        Button btnCancel = (Button)findViewById(R.id.btn_cancel_scan);
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CaptureActivity.this.finish();
-            }
-        });
     }
 
     private void initView(){
