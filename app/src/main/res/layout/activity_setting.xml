@@ -26,7 +26,7 @@
             android:background="@color/background_grey">
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="320dp"
                 tools:ignore="MissingConstraints"
                 android:orientation="vertical"
                 app:layout_constraintRight_toRightOf="@+id/constraintLayout2"
@@ -40,35 +40,36 @@
                 <com.xiaoantech.electrombile.widget.DrawableTextView
                     style="@style/clickableLayout"
                     android:text="推送设置"
-                    android:textSize="17sp"
+                    android:textSize="35px"
+                    android:layout_height="50dp"
                     android:textColor="@color/avoscloud_feedback_back_background"
-                    android:textStyle="normal|bold"
                     android:drawableRight="@drawable/to"/>
 
                 <com.xiaoantech.electrombile.widget.DrawableTextView
                     style="@style/clickableLayout"
                     android:text="自动设防设置"
-                    android:textSize="17sp"
-                    android:textStyle="normal|bold"
-                    android:textColor="@color/avoscloud_feedback_back_background"
-                    android:drawableRight="@drawable/to"/>
-
+                    android:drawableRight="@drawable/to"
+                    android:textSize="35px"
+                    android:layout_height="50dp"
+                    android:onClick="@{() -> presenter.gotoAutoLock()}"
+                    android:textColor="@color/avoscloud_feedback_back_background" />
 
                 <com.xiaoantech.electrombile.widget.DrawableTextView
-                    android:layout_marginTop="20dp"
                     style="@style/clickableLayout"
+                    android:layout_marginTop="10dp"
                     android:text="修改密码"
                     android:onClick="@{() -> presenter.gotoChangePass()}"
-                    android:textSize="17sp"
-                    android:textStyle="normal|bold"
+                    android:textSize="35px"
+                    android:layout_height="50dp"
                     android:textColor="@color/avoscloud_feedback_back_background"
                     android:drawableRight="@drawable/to"/>
 
                 <com.xiaoantech.electrombile.widget.DrawableTextView
                     style="@style/clickableLayout"
+                    android:onClick="@{() -> presenter.gotoPhoneAlarm()}"
                     android:text="清空缓存"
-                    android:textStyle="normal|bold"
-                    android:textSize="17sp"
+                    android:layout_height="50dp"
+                    android:textSize="35px"
                     android:textColor="@color/avoscloud_feedback_back_background" />
             </LinearLayout>
 
@@ -83,15 +84,18 @@
                 app:layout_constraintVertical_bias="0.8" />
 
             <Button
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:text="退出当前账号"
                 app:layout_constraintTop_toBottomOf="@+id/view3"
                 app:layout_constraintRight_toRightOf="@+id/constraintLayout2"
                 app:layout_constraintLeft_toLeftOf="@+id/constraintLayout2"
                 app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
-                android:layout_width="310dp"
+                android:layout_width="325dp"
                 app:layout_constraintHorizontal_bias="0.6"
-                android:backgroundTint="@color/orange" />
+                android:background="@drawable/shape"
+                android:onClick="@{ () -> presenter.logout()}"
+                android:layout_marginTop="75dp"
+                android:layout_marginBottom="75dp" />
 
         </android.support.constraint.ConstraintLayout>
 

@@ -22,7 +22,7 @@
             android:layout_marginLeft="35dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="17sp"
+            android:textSize="34px"
             android:textColor="#7f7f7f"
             android:text="已下载地图" />
 
@@ -42,7 +42,7 @@
         android:layout_marginLeft="35dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
+        android:textSize="34px"
         android:textColor="#7f7f7f"
         android:text="下载地图"
        />

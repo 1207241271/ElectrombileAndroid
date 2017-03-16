@@ -6,47 +6,40 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-    <include
+
+        <include
         android:id="@+id/navigation"
         layout="@layout/bar_navigation_title"/>
+
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="      请选择绑定方式"
+            android:layout_height="45dp"
+            android:text="     请选择绑定方式"
             android:gravity="center_vertical"
-            android:textSize="18sp"
+            android:textSize="35px"
             android:background="@color/background_grey" />
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:id="@+id/constraintLayout_scan"
             tools:ignore="MissingConstraints"
-            android:layout_height="60dp">
+            android:layout_height="50dp">
 
-
-            <View
-                android:layout_width="395dp"
-                android:layout_height="1dp"
-                app:layout_constraintTop_toTopOf="@+id/constraintLayout_scan"
-                android:background="@color/gray"
-                app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_scan"
-                app:layout_constraintRight_toRightOf="@+id/constraintLayout_scan"
-                />
             <ImageView
-                android:layout_width="30dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 app:layout_constraintTop_toTopOf="@+id/constraintLayout_scan"
                 app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_scan"
                 app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_scan"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="16dp"
                 android:id="@+id/img_imei_scan"
-                android:src="@drawable/img_imei_scan"
-                android:layout_height="30dp" />
+                android:src="@drawable/img_imei_scan"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="扫描二维码"
-                android:textSize="20sp"
+                android:textSize="35px"
                 app:layout_constraintCenterY_toCenterY="@id/constraintLayout_scan"
                 app:layout_constraintLeft_toRightOf="@+id/img_imei_scan"
                 android:layout_marginLeft="20dp"
@@ -55,7 +48,7 @@
                 tools:ignore="RtlHardcoded" />
 
             <View
-                android:layout_width="395dp"
+                android:layout_width="340dp"
                 android:layout_height="1dp"
                 app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_scan"
                 android:background="@color/gray"
@@ -67,37 +60,29 @@
             android:layout_width="match_parent"
             android:id="@+id/constraintLayout_input"
             tools:ignore="MissingConstraints"
-            android:layout_height="60dp">
+            android:layout_height="50dp">
 
             <ImageView
-                android:layout_width="30dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 app:layout_constraintTop_toTopOf="@+id/constraintLayout_input"
                 app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_input"
                 app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_input"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="16dp"
                 android:id="@+id/img_imei_input"
-                android:src="@drawable/img_imei_input"
-                android:layout_height="30dp" />
+                android:src="@drawable/img_imei_input"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="输入产品序列号"
-                android:textSize="20sp"
+                android:textSize="35px"
                 app:layout_constraintCenterY_toCenterY="@id/constraintLayout_input"
                 app:layout_constraintLeft_toRightOf="@+id/img_imei_input"
                 android:layout_marginLeft="20dp"
                 android:layout_marginStart="20dp"
                 tools:layout_editor_absoluteY="23dp"
                 tools:ignore="RtlHardcoded" />
-            <View
-                android:layout_width="395dp"
-                android:layout_height="1dp"
-                android:background="@color/gray"
-                app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_input"
-                app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_input"
-                app:layout_constraintRight_toRightOf="@+id/constraintLayout_input" />
-
         </android.support.constraint.ConstraintLayout>
 
     <View

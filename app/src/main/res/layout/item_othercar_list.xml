@@ -29,7 +29,7 @@
         android:layout_marginStart="16dp"
         tools:layout_editor_absoluteY="17dp"
         android:id="@+id/txt_car_name"
-        android:textSize="15sp"
+        android:textSize="32px"
         android:textColor="@color/avoscloud_feedback_thread_header_background" />
 
 </android.support.constraint.ConstraintLayout>

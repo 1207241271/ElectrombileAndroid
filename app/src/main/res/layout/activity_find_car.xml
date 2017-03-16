@@ -200,12 +200,13 @@
 
         <Button
             android:id="@+id/btn_continueGetSignal"
-            android:layout_height="33.33dp"
-            android:layout_width="136.67dp"
+            android:layout_height="45dp"
+            android:layout_width="325dp"
             android:layout_marginTop="36.67dp"
             android:layout_gravity="center_horizontal"
             android:textColor="#ffffff"
-            android:textSize="17.33sp"
+            android:background="@drawable/shape"
+            android:textSize="35px"
             android:text = "继续采集" />
 
     </LinearLayout>

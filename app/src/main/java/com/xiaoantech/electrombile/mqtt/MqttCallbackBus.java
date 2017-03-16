@@ -44,7 +44,8 @@ public class MqttCallbackBus implements MqttCallback {
             return;
         }
         try {
-             JSONObject jsonObject = new JSONObject(messageStr);
+            Log.d(TAG,messageStr);
+            JSONObject jsonObject = new JSONObject(messageStr);
             if (messageStr.contains(MqttCommonConstant.CMD)){
                 receivedCMDMessage(jsonObject);
             }else if (messageStr.contains(MqttCommonConstant.GPS)){

@@ -1,5 +1,7 @@
 package com.xiaoantech.electrombile.mqtt;
 
+import android.util.Log;
+
 import com.xiaoantech.electrombile.constant.MqttCommonConstant;
 
 import org.json.JSONException;
@@ -10,7 +12,7 @@ import org.json.JSONObject;
  */
 
 public class MqttPublishManager {
-
+    private static String TAG = "MqttPublishManager";
     private static MqttPublishManager mInstance = null;
 
     public static MqttPublishManager getInstance() {
@@ -85,6 +87,7 @@ public class MqttPublishManager {
         }catch (JSONException e){
             e.printStackTrace();
         }
+        Log.d(TAG,jsonObject.toString());
         return jsonObject.toString().getBytes();
     }
 
@@ -96,6 +99,7 @@ public class MqttPublishManager {
         }catch (JSONException e){
             e.printStackTrace();
         }
+        Log.d(TAG,jsonObject.toString());
         return jsonObject.toString().getBytes();
     }
 
