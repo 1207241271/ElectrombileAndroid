@@ -19,6 +19,7 @@ public class HttpConstant {
         HTTP_CMD_SET_BATTERY_TYPE,
         HTTP_CMD_START_RECORD,
         HTTP_CMD_STOP_RECORD,
-        HTTP_CMD_DEFAULT
+        HTTP_CMD_DEFAULT,
+        HTTP_CMD_SETPHONEALARM
     }
 }

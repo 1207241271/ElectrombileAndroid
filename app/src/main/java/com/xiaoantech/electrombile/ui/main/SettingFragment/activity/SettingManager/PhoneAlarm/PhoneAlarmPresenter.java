@@ -19,6 +19,7 @@ import com.xiaoantech.electrombile.mqtt.MqttPublishManager;
 
 import org.eclipse.paho.android.service.MqttService;
 import org.eclipse.paho.client.mqttv3.internal.MessageCatalog;
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
@@ -82,14 +83,12 @@ public class PhoneAlarmPresenter implements PhoneAlarmContract.Presenter{
         mPhoneAlarm.setPresenter(this);
     }
 
-    @Override
-    public void subscribe() {
-
+    public void subscribe(){
+        EventBus.getDefault().register(this);
     }
 
-    @Override
     public void unsubscribe() {
-
+        EventBus.getDefault().unregister(this);
     }
 
     public void putAlarmPhoneFormHttp(){
@@ -98,24 +97,15 @@ public class PhoneAlarmPresenter implements PhoneAlarmContract.Presenter{
         try{
             JSONObject caller = new JSONObject();
             caller.put("caller",callerIndex);
-            HttpManager.putHttpResult(url, HttpManager.putType.PUT_TYPE_ALARMPHONE, caller.toString());
             mPhoneAlarm.showWaitingDialog("正在设置");
+            HttpManager.putHttpResult(url, HttpManager.putType.PUT_TYPE_ALARMPHONE, caller.toString());
         }catch (JSONException e){
             e.printStackTrace();
         }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onHttpEvent(HttpPutEvent event){
-        try {
-            if (event.getRequestType() == HttpManager.putType.PUT_TYPE_ALARMPHONE){
-
-            }else if (event.getRequestType() == HttpManager.putType.PUT_TYPE_ALARMPHONE){
-
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
+    public void onHttpPutEvent(HttpPutEvent event){
+        mPhoneAlarm.showToast("测试成功");
     }
 }

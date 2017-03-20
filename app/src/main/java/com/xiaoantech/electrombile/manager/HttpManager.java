@@ -28,29 +28,15 @@ public class HttpManager {
         GET_TYPE_TODAYITINERARY,
         GET_TYPE_ROUTES,
         GET_TYPE_GPS_POINTS,
-        GET_TYPE_ALARMPHONE
     }
     public enum postType{
-        POST_TYPE_WEATHER,
-        POST_TYPE_TODAYITINERARY,
-        POST_TYPE_ROUTES,
-        POST_TYPE_GPS_POINTS,
-        POST_TYPE_ALARMPHONE,
-        POST_TYPE_DEVICE
+        POST_TYPE_DEVICE,
+        POST_TYPE_PHONE
     }
     public enum putType{
-        PUT_TYPE_WEATHER,
-        PUT_TYPE_TODAYITINERARY,
-        PUT_TYPE_ROUTES,
-        PUT_TYPE_GPS_POINTS,
         PUT_TYPE_ALARMPHONE
     }
     public enum deleteType{
-        DELETE_TYPE_WEATHER,
-        DELETE_TYPE_TODAYITINERARY,
-        DELETE_TYPE_ROUTES,
-        DELETE_TYPE_GPS_POINTS,
-        DELETE_TYPE_ALARMPHONE
     }
     public static void getHttpResult(final String url, final getType gettype){
         new Thread(new Runnable(){
@@ -84,49 +70,18 @@ public class HttpManager {
                     connection.setDoInput(true);
                     connection.setRequestMethod("PUT");
                     connection.setConnectTimeout(5000);
-                    connection.setUseCaches(false);        //设置不用缓存
-                    connection.setInstanceFollowRedirects(true);
                     connection.setRequestProperty("Content-Type", "application/json");
-                    connection.setRequestProperty("Connection", "keep-alive");
-                    connection.setRequestProperty("Content-Length", String.valueOf(bytes));
-                    connection.connect();
                     OutputStream out = connection.getOutputStream();
                     out.write(bytes);
                     out.flush();
                     out.close();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                    String lines;
-                    StringBuffer sb = new StringBuffer("");
-                    while ((lines = reader.readLine()) != null){
-                        lines = new String(lines.getBytes(), "utf-8");
-                        sb.append(lines);
-                    }
-                    if (connection.getResponseCode() == 200){
+                    int response = connection.getResponseCode();
+                    if (response == HttpURLConnection.HTTP_OK) {
                         String result = StreamToStringUtil.StreamToString(connection.getInputStream());
-                        EventBus.getDefault().post(new HttpPutEvent(puttype,StringUtil.decodeUnicode(result.toString()),true));
+                        EventBus.getDefault().post(new HttpPutEvent(puttype, StringUtil.decodeUnicode(result.toString()), true));
                     }else {
                         connection.disconnect();
                     }
-                    /*OutputStream out = connection.getOutputStream();
-                    out.write(bytes);
-                    out.flush();
-                    out.close();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                    String lines;
-                    StringBuffer sb = new StringBuffer("");
-                    while ((lines = reader.readLine()) != null){
-                        lines = new String(lines.getBytes(), "utf-8");
-                        sb.append(lines);
-                    }*/
-                    /*
-                    if (connection.getResponseCode() == 200){
-                        String result = StreamToStringUtil.StreamToString(connection.getInputStream());
-                        EventBus.getDefault().post(new HttpPutEvent(puttype,StringUtil.decodeUnicode(result),true));
-                    }
-
-                    System.out.println(sb);
-                    reader.close();
-                    connection.disconnect();*/
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -150,13 +105,16 @@ public class HttpManager {
                     connection.setUseCaches(false);        //设置不进行缓存
                     connection.setInstanceFollowRedirects(true);
                     connection.setRequestProperty("Content-Type", "application/json");
-                    connection.setRequestProperty("Connection", "keep-alive");
-                    connection.setRequestProperty("Content-Length", String.valueOf(bytes.length));
-
+                    OutputStream os = connection.getOutputStream();
+                    os.write(bytes);
+                    os.flush();
+                    os.close();
                     int response = connection.getResponseCode();
                     if (response == HttpURLConnection.HTTP_OK){
                         String result = StreamToStringUtil.StreamToString(connection.getInputStream());
                         EventBus.getDefault().post(new HttpDeleteEvent(deletetype,StringUtil.decodeUnicode(result),true));
+                    }else {
+                        connection.disconnect();
                     }
                 }catch (Exception e){
                     e.printStackTrace();
@@ -184,7 +142,8 @@ public class HttpManager {
                     connection.setRequestProperty("Content-Length",String.valueOf(bytes.length));
                     OutputStream outputStream = connection.getOutputStream();
                     outputStream.write(bytes);
-
+                    outputStream.flush();
+                    outputStream.close();
                     int response = connection.getResponseCode();
                     if (response == HttpURLConnection.HTTP_OK){
                         String result = StreamToStringUtil.StreamToString(connection.getInputStream());

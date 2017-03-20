@@ -73,22 +73,21 @@ public class AutoLockPresenter implements AutoLockContract.Presenter {
     public void onAutoLockEvent(AutoLockEvent event){
         JSONObject object = event.getJsonObject();
         try {
-        int code = object.getInt("code");
-        if (code == 0){
-            if (event.getCmdType() == EventBusConstant.cmdType.CMD_TYPE_AUTOLOCK_ON){
-                mAutoLock.changeAutoLockState(true);
-                LocalDataManager.getInstance().setAutoLock(true);
-            }else if (event.getCmdType() == EventBusConstant.cmdType.CMD_TYPE_AUTOLOCK_OFF){
-                mAutoLock.changeAutoLockState(false);
-                LocalDataManager.getInstance().setAutoLock(false);
+            int code = object.getInt("code");
+            if (code == 0){
+                if (event.getCmdType() == EventBusConstant.cmdType.CMD_TYPE_AUTOLOCK_ON){
+                    mAutoLock.changeAutoLockState(true);
+                    LocalDataManager.getInstance().setAutoLock(true);
+                }else if (event.getCmdType() == EventBusConstant.cmdType.CMD_TYPE_AUTOLOCK_OFF){
+                    mAutoLock.changeAutoLockState(false);
+                    LocalDataManager.getInstance().setAutoLock(false);
+                }
+            }else {
+                dealWithErrorCode(code);
             }
-        }else {
-            dealWithErrorCode(code);
+        }catch (Exception e){
+            e.printStackTrace();
         }
-    }catch (Exception e){
-        e.printStackTrace();
-    }
-
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
