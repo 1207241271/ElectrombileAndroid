@@ -20,6 +20,7 @@ import com.xiaoantech.electrombile.ui.main.SettingFragment.activity.SettingManag
 
 import com.xiaoantech.electrombile.ui.main.SettingFragment.activity.SettingManager.ChangePass.ChangePassActivity;
 import com.xiaoantech.electrombile.ui.main.SettingFragment.activity.SettingManager.PhoneAlarm.PhoneAlarmActivity;
+import com.xiaoantech.electrombile.ui.main.SettingFragment.activity.SettingManager.PhoneAlarm.PhoneAlarmAgreement.PhoneAlarmAgreementActivity;
 import com.xiaoantech.electrombile.ui.main.Unkown.Record.RecordActivity;
 import com.xiaoantech.electrombile.widget.Dialog.CertainDialog;
 import com.xiaoantech.electrombile.widget.Dialog.CommonDialog;
@@ -74,7 +75,7 @@ public class SettingManagerActivity extends BaseAcitivity implements SettingMana
 
     @Override
     public void gotoPhoneAlarm() {
-        Intent intent = new Intent(SettingManagerActivity.this, RecordActivity.class);
+        Intent intent = new Intent(SettingManagerActivity.this, PhoneAlarmAgreementActivity.class);
         startActivity(intent);
     }
 

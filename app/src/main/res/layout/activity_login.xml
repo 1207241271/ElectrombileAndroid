@@ -87,6 +87,7 @@
                     android:layout_width="275dp"
                     android:layout_height="match_parent"
                     android:hint="请输入手机号"
+                    android:background="@null"
                     android:textColorHint="@color/grey_txt"/>
 
             </LinearLayout>

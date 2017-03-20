@@ -61,4 +61,16 @@ public class PhoneAlarmActivity extends BaseAcitivity implements PhoneAlarmContr
             }
         });
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPresenter.subscribe();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mPresenter.unsubscribe();
+    }
 }
