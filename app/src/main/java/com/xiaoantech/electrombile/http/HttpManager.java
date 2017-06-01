@@ -60,7 +60,6 @@ public class HttpManager {
                 try {
                     URL getURL = new URL(url);
                     connection = (HttpURLConnection) getURL.openConnection();
-                    connection.setDoOutput(true);
                     connection.setDoInput(true);
                     connection.setRequestMethod("DELETE");
                     connection.setConnectTimeout(5000);

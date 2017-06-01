@@ -1,5 +1,6 @@
 package com.xiaoantech.electrombile.ui.main.SettingFragment.activity.SettingManager;
 
+
 import com.xiaoantech.electrombile.event.http.httpPost.HttpPostElectricSetEvent;
 import com.xiaoantech.electrombile.event.http.httpPost.HttpPostLockSetEvent;
 import com.xiaoantech.electrombile.http.HttpPublishManager;
@@ -12,6 +13,7 @@ import com.xiaoantech.electrombile.utils.ErrorCodeConvertUtil;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -89,11 +91,15 @@ public class SettingManagerPresenter implements SettingManagerContract.Presenter
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onHttpGetEvent(HttpGetEvent event){
-
-        if (event.getResult().indexOf("code") != -1) {
-            mSettingManagerView.PhoneAlarmOpen(false);
-        }else{
-            mSettingManagerView.PhoneAlarmOpen(true);
+        try{
+            JSONObject jsonObject = new JSONObject(event.getResult());
+            if (jsonObject.has("telephone")){
+                mSettingManagerView.PhoneAlarmOpen(true);
+            }else {
+                mSettingManagerView.PhoneAlarmOpen(false);
+            }
+        }catch (JSONException e){
+            e.printStackTrace();
         }
     }
 

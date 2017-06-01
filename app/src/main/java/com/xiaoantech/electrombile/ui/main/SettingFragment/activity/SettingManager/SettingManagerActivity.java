@@ -3,10 +3,12 @@ package com.xiaoantech.electrombile.ui.main.SettingFragment.activity.SettingMana
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.avos.avoscloud.AVUser;
 import com.xiaoantech.electrombile.R;
@@ -26,6 +28,8 @@ import com.xiaoantech.electrombile.ui.main.SettingFragment.activity.Record.Recor
 import com.xiaoantech.electrombile.widget.Dialog.CertainDialog;
 import com.xiaoantech.electrombile.widget.Dialog.CommonDialog;
 import com.xiaoantech.electrombile.widget.Dialog.CustomDialog;
+
+import java.util.Set;
 
 /**
  * Created by yangxu on 2016/12/14.

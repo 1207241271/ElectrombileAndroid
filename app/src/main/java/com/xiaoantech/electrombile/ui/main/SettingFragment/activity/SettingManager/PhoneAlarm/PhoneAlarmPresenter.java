@@ -133,6 +133,7 @@ public class PhoneAlarmPresenter implements PhoneAlarmContract.Presenter{
                 if (code == 0){
                     LocalDataManager.getInstance().setPhoneAlarmOpen(false);
                     mPhoneAlarm.showToast("电话报警已关闭");
+                    LocalDataManager.getInstance().setIsAddContract(false);
                     mPhoneAlarm.finishActivity();
                 }else {
                     mPhoneAlarm.showToast("电话报警关闭失败");
