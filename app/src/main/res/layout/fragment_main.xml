@@ -9,262 +9,396 @@
             type="com.xiaoantech.electrombile.ui.main.MainFragment.MainFragmentContract.Presenter" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_height="match_parent"
+    <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:background="@color/white"
-        tools:ignore="MissingConstraints">
+        android:layout_height="match_parent"
+        android:id="@+id/swipe_layout"
+        >
 
-        <ImageView
-            android:layout_width="38dp"
-            android:layout_height="38dp"
-            android:src="@drawable/img_weather_cloudy"
-            android:onClick="@{()->presenter.showWeatherInfo()}"
-            android:id="@+id/weather_image"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="@+id/constraintLayout"
-            android:layout_marginStart="16dp"
-            app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="38dp"
-            android:id="@+id/weather_temperature"
-            android:text="30°"
-            android:textSize="30sp"
-            android:gravity="center_vertical"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="4dp"
-            android:onClick="@{()->presenter.showWeatherInfo()}"
-            app:layout_constraintTop_toTopOf="@+id/constraintLayout"
-            app:layout_constraintLeft_toRightOf="@+id/weather_image"
-            android:layout_marginStart="4dp"
-            tools:ignore="HardcodedText" />
-        <Button
-            android:id="@+id/messageButton"
-            android:layout_width="88dp"
-            android:layout_height="48dp"
-            android:background="@drawable/btn_message"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintRight_toRightOf="@+id/constraintLayout"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="@+id/constraintLayout" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/img_car_background"
-            app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
-            app:layout_constraintRight_toRightOf="@+id/constraintLayout"
-            app:layout_constraintTop_toBottomOf="@+id/messageButton"
-            app:layout_constraintBottom_toTopOf="@+id/btn_change_car"
-            android:layout_marginBottom="18dp"
-            android:layout_marginTop="5dp"
-            android:id="@+id/imageView" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toTopOf="@+id/constraintLayout"
-            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintVertical_bias="0.4"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintRight_toRightOf="@+id/constraintLayout"
-            android:layout_marginStart="16dp"
-            app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
-            android:id="@+id/btn_change_car"
-            android:text="切换车辆"
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
             android:background="@color/white"
-            android:onClick="@{() -> presenter.changeCar()}"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout_battery"
-            app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
-            android:layout_marginLeft="30dp"
-            android:id="@+id/btn_fence"
-            android:onClick="@{() -> presenter.changeFenceStatus()}"
-            android:text="已上锁"
-            android:layout_marginStart="30dp"
-            android:layout_marginBottom="15dp"/>
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/btn_lock"
-            android:background="@color/white"
-            android:onClick="@{() -> presenter.changeFenceStatus()}"
-            app:layout_constraintBottom_toTopOf="@+id/btn_fence"
-            app:layout_constraintLeft_toLeftOf="@+id/btn_fence"
-            app:layout_constraintRight_toRightOf="@+id/btn_fence"/>
+            tools:ignore="GradleDependency,MissingConstraints">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintRight_toRightOf="@+id/constraintLayout"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_change_car"
-            android:layout_height="wrap_content"
-            android:id="@+id/btn_autolock" />
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:src="@null"
+                android:onClick="@{()->presenter.showWeatherInfo()}"
+                android:id="@+id/weather_image"
+                android:layout_marginTop="13dp"
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout"
+                android:layout_marginStart="18dp"
+                app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
+                tools:ignore="ContentDescription" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:id="@+id/weather_temperature"
+                android:text="--°"
+                android:textSize="23dp"
+                android:gravity="center_vertical"
+                android:layout_marginTop="13dp"
+                android:layout_marginLeft="4dp"
+                android:onClick="@{()->presenter.showWeatherInfo()}"
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout"
+                app:layout_constraintLeft_toRightOf="@+id/weather_image"
+                android:layout_marginStart="4dp"
+                tools:ignore="HardcodedText,RtlHardcoded" />
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
-            app:layout_constraintRight_toRightOf="@+id/view"
-            app:layout_constraintBottom_toBottomOf="@+id/view"
-            app:layout_constraintTop_toTopOf="@+id/view"
-            android:id="@+id/linearLayout_battery"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_change_car"
+                android:text="--"
+                android:background="@color/white"
+                android:onClick="@{() -> presenter.changeCar()}"
+                app:layout_constraintCenterY_toCenterY="@id/weather_image"
+                app:layout_constraintRight_toRightOf="@+id/constraintLayout"
+                app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
+                tools:layout_editor_absoluteY="43dp"
+                tools:ignore="HardcodedText" />
 
-            >
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/constraintLayout_battery"
-                android:onClick="@{() -> presenter.getBattery()}"
-                android:background="@color/appOrange">
+            <ImageView
+                android:id="@+id/messageButton"
+                android:layout_width="27dp"
+                android:layout_height="25dp"
+                android:background="@drawable/btn_message"
+                android:layout_marginEnd="17dp"
+                app:layout_constraintRight_toRightOf="@+id/constraintLayout"
+                android:layout_marginTop="13dp"
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout"
+                android:onClick="@{() -> presenter.gotoMessage()}"
+                tools:ignore="ContentDescription" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/txt_battery"
-                    android:text="70"
-                    android:textSize="100sp"
-                    android:gravity="right|top"
-                    android:textColor="@color/white"
-                    app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_battery"
-                    app:layout_constraintRight_toRightOf="@+id/constraintLayout_battery"
-                    app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_battery"
-                    app:layout_constraintTop_toTopOf="@+id/constraintLayout_battery"
-                    app:layout_constraintVertical_bias="0.100000024"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="%"
-                    android:id="@+id/txt_battery_unit"
-                    android:layout_marginTop="10dp"
-                    android:textSize="23sp"
-                    android:textColor="@color/white"
-                    app:layout_constraintLeft_toRightOf="@+id/txt_battery"
-                    app:layout_constraintTop_toTopOf="@+id/txt_battery"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="剩余电量"
-                    android:textSize="15sp"
-                    android:textColor="@color/white"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_battery"
-                    app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_battery"
-                    app:layout_constraintRight_toRightOf="@+id/constraintLayout_battery"
-                    app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_battery"
-                    app:layout_constraintVertical_bias="0.1"/>
-            </android.support.constraint.ConstraintLayout>
-        </LinearLayout>
-
-        <!--<Button-->
-            <!--android:layout_width="160dp"-->
-            <!--android:layout_height="80dp"-->
-            <!--android:id="@+id/btn_battery"-->
-            <!--app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"-->
-            <!--app:layout_constraintRight_toRightOf="@+id/view"-->
-            <!--app:layout_constraintBottom_toBottomOf="@+id/view"-->
-            <!--app:layout_constraintTop_toTopOf="@+id/view"-->
-            <!--android:onClick="@{() -> presenter.getBattery()}"-->
-            <!--android:text="dian"-->
-            <!--android:visibility="invisible"/>-->
-        <View
-            android:layout_height="0dp"
-            android:background="@color/yellow"
-            app:layout_constraintBottom_toBottomOf="@+id/linearLayout_itinerary"
-            app:layout_constraintTop_toTopOf="@+id/linearLayout_itinerary"
-            android:layout_marginStart="16dp"
-            app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintRight_toRightOf="@+id/constraintLayout"
-            android:layout_width="1dp"
-            android:id="@+id/view" />
-
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="150dp"
-            app:layout_constraintRight_toRightOf="@+id/constraintLayout"
-            app:layout_constraintLeft_toLeftOf="@+id/view"
-            android:layout_marginTop="18dp"
-            app:layout_constraintTop_toBottomOf="@+id/btn_change_car"
-            android:id="@+id/linearLayout_itinerary"
-
-            >
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/constraintLayout_itinerary"
-                android:onClick="@{() -> presenter.getItinerary()}"
-                android:background="@color/appOrange">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/txt_itinerary"
-                    android:text="70"
-                    android:textSize="100sp"
-                    android:gravity="right|top"
-                    android:textColor="@color/white"
-                    app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_itinerary"
-                    app:layout_constraintRight_toRightOf="@+id/constraintLayout_itinerary"
-                    app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_itinerary"
-                    app:layout_constraintTop_toTopOf="@+id/constraintLayout_itinerary"
-                    app:layout_constraintVertical_bias="0.1"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="km"
-                    android:id="@+id/txt_itinerary_unit"
-                    android:layout_marginTop="10dp"
-                    android:textSize="23sp"
-                    android:textColor="@color/white"
-                    app:layout_constraintLeft_toRightOf="@+id/txt_itinerary"
-                    app:layout_constraintTop_toTopOf="@+id/txt_itinerary"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="今日里程"
-                    android:textSize="15sp"
-                    android:textColor="@color/white"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_itinerary"
-                    app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_itinerary"
-                    app:layout_constraintRight_toRightOf="@+id/constraintLayout_itinerary"
-                    app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_itinerary"
-                    app:layout_constraintVertical_bias="0.1"/>
-            </android.support.constraint.ConstraintLayout>
-        </LinearLayout>
-
-        <com.baidu.mapapi.map.MapView
-            android:layout_height="0dp"
-            android:layout_width="0dp"
-            android:id="@+id/mapview"
-            android:onClick="@{() -> presenter.gotoMap()}"
-            app:layout_constraintRight_toRightOf="@+id/constraintLayout"
-            app:layout_constraintBottom_toTopOf="@+id/textView"
-            app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout_battery"
+            <View
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:id="@+id/view_map_locate"
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout"
+                app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+                app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
+                app:layout_constraintRight_toRightOf="@+id/constraintLayout"
+                app:layout_constraintVertical_bias="0.698"
             />
-        <TextView
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
-            android:layout_width="0dp"
-            android:text="didian"
-            android:textSize="16sp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintRight_toRightOf="@+id/constraintLayout"
-            android:layout_marginStart="16dp"
-            app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
-            android:id="@+id/textView"
-            android:onClick="@{() -> presenter.gotoMap()}"/>
+
+
+            <com.baidu.mapapi.map.MapView
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:id="@+id/mapview"
+                android:onClick="@{() -> presenter.gotoMap()}"
+                android:layout_marginTop="13dp"
+                app:layout_constraintTop_toBottomOf="@+id/weather_image"
+                app:layout_constraintRight_toRightOf="@+id/constraintLayout"
+                app:layout_constraintBottom_toTopOf="@+id/textView"
+                app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintVertical_bias="1.0" />
+            
+            <ImageView
+                android:layout_width="13dp"
+                android:layout_height="27dp"
+                android:src="@drawable/img_txt_location"
+                app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
+                app:layout_constraintRight_toLeftOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/mapview"
+                app:layout_constraintBottom_toTopOf="@+id/status_constraint"/>
+            <TextView
+                android:layout_height="34dp"
+                android:layout_width="0dp"
+                android:textColor="@color/black"
+                android:text="车辆位置"
+                android:textSize="38px"
+                android:id="@+id/textView"
+                android:gravity="center_vertical"
+                android:onClick="@{() -> presenter.gotoMap()}"
+                app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
+                app:layout_constraintRight_toRightOf="@+id/constraintLayout"
+                app:layout_constraintBottom_toTopOf="@+id/view_map_locate"
+                android:layout_marginLeft="30dp"
+                tools:ignore="HardcodedText" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:id="@+id/status_constraint"
+                app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
+                app:layout_constraintRight_toRightOf="@+id/constraintLayout"
+                app:layout_constraintTop_toTopOf="@+id/view_map_locate"
+                app:layout_constraintBottom_toBottomOf="@+id/view_func"
+                android:background="@drawable/back_normal"
+                android:orientation="horizontal"
+                >
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/constraintLayout_battery"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txt_battery"
+                        android:text="--"
+                        android:textSize="34sp"
+                        android:gravity="right|top"
+                        android:textColor="@color/white"
+                        app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_battery"
+                        app:layout_constraintRight_toRightOf="@+id/constraintLayout_battery"
+                        app:layout_constraintTop_toTopOf="@+id/constraintLayout_battery"
+                        android:layout_marginTop="@dimen/y48"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="%"
+                        android:id="@+id/txt_battery_unit"
+                        android:layout_marginTop="@dimen/y10"
+                        android:textSize="15sp"
+                        android:textColor="@color/white"
+                        app:layout_constraintLeft_toRightOf="@+id/txt_battery"
+                        app:layout_constraintTop_toTopOf="@+id/txt_battery"
+                        tools:ignore="HardcodedText" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="剩余电量"
+                        android:textSize="11sp"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_battery"
+                        app:layout_constraintRight_toRightOf="@+id/constraintLayout_battery"
+                        app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_battery"
+                        android:layout_marginBottom="@dimen/y30"/>
+                </android.support.constraint.ConstraintLayout>
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/constraintLayout_itinerary"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txt_itinerary"
+                        android:text="--"
+                        android:textSize="34dp"
+                        android:gravity="right|top"
+                        android:textColor="@color/white"
+                        app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_itinerary"
+                        app:layout_constraintRight_toRightOf="@+id/constraintLayout_itinerary"
+
+                        app:layout_constraintTop_toTopOf="@+id/constraintLayout_itinerary"
+                        android:layout_marginTop="@dimen/y48"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="km"
+                        android:id="@+id/txt_itinerary_unit"
+                        android:layout_marginTop="@dimen/y10"
+                        android:textSize="11sp"
+                        android:textColor="@color/white"
+                        app:layout_constraintLeft_toRightOf="@+id/txt_itinerary"
+                        app:layout_constraintTop_toTopOf="@+id/txt_itinerary"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="今日里程"
+                        android:textSize="11sp"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_itinerary"
+                        app:layout_constraintRight_toRightOf="@+id/constraintLayout_itinerary"
+                        app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_itinerary"
+                        android:layout_marginBottom="@dimen/y30"/>
+                </android.support.constraint.ConstraintLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.9"/>
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/status_constraint_GSM"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:layout_width="@dimen/x63"
+                        android:layout_height="@dimen/y64"
+                        android:id="@+id/img_GSM_status"
+                        android:src="@drawable/level_0"
+                        app:layout_constraintLeft_toLeftOf="@+id/status_constraint_GSM"
+                        app:layout_constraintRight_toRightOf="@+id/status_constraint_GSM"
+                        app:layout_constraintTop_toTopOf="@+id/status_constraint_GSM"
+                        app:layout_constraintBottom_toBottomOf="@+id/status_constraint_GSM"
+                        android:layout_marginBottom="@dimen/y28"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintLeft_toLeftOf="@+id/status_constraint_GSM"
+                        app:layout_constraintRight_toRightOf="@+id/status_constraint_GSM"
+                        app:layout_constraintBottom_toBottomOf="@+id/status_constraint_GSM"
+                        android:text="电门已打开"
+                        android:id="@+id/txt_GSM_status_show"
+                        android:textColor="@color/black"
+                        android:textSize="11sp"
+                        android:layout_marginBottom="@dimen/y30"/>
+                </android.support.constraint.ConstraintLayout>
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/status_GPS_constraint"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:layout_width="@dimen/x72"
+                        android:layout_height="@dimen/y73"
+                        android:id="@+id/GPS_status"
+                        android:src="@drawable/img_satellite"
+                        app:layout_constraintLeft_toLeftOf="@+id/status_GPS_constraint"
+                        app:layout_constraintRight_toRightOf="@+id/status_GPS_constraint"
+                        app:layout_constraintTop_toTopOf="@+id/status_GPS_constraint"
+                        app:layout_constraintBottom_toBottomOf="@+id/status_GPS_constraint"
+                        android:layout_marginBottom="@dimen/y28"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txt_isGPS"
+                        app:layout_constraintLeft_toLeftOf="@+id/status_GPS_constraint"
+                        app:layout_constraintRight_toRightOf="@+id/status_GPS_constraint"
+                        app:layout_constraintBottom_toBottomOf="@+id/status_GPS_constraint"
+                        android:text="GPS强度"
+                        android:textColor="@color/black"
+                        android:textSize="11sp"
+                        android:layout_marginBottom="@dimen/y30"
+                        tools:ignore="HardcodedText" />
+
+                </android.support.constraint.ConstraintLayout>
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:id="@+id/view_func"
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout"
+                app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+                app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
+                app:layout_constraintRight_toRightOf="@+id/constraintLayout"
+                app:layout_constraintVertical_bias="0.843"
+                />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintRight_toRightOf="@+id/constraintLayout"
+                app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
+                app:layout_constraintTop_toBottomOf="@+id/view_func"
+                app:layout_constraintBottom_toBottomOf="@+id/constraintLayout">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/history_constraint"
+                    android:onClick="@{() -> presenter.gotoHistory()}"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:layout_width="@dimen/x86"
+                        android:layout_height="@dimen/y93"
+                        android:id="@+id/img_history"
+                        android:src="@drawable/img_history"
+                        app:layout_constraintLeft_toLeftOf="@id/history_constraint"
+                        app:layout_constraintRight_toRightOf="@id/history_constraint"
+                        app:layout_constraintTop_toTopOf="@+id/history_constraint"
+                        android:layout_marginTop="@dimen/y55"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="历史轨迹"
+                        android:layout_marginBottom="@dimen/y59"
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        app:layout_constraintLeft_toLeftOf="@id/history_constraint"
+                        app:layout_constraintRight_toRightOf="@id/history_constraint"
+                        app:layout_constraintBottom_toBottomOf="@id/history_constraint"/>
+                </android.support.constraint.ConstraintLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/black"/>
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/switch_constraint"
+                    android:layout_weight="1"
+                    android:onClick="@{() -> presenter.changeFenceStatus()}"
+                    tools:ignore="GradleDependency">
+                    <ImageView
+                        android:layout_width="@dimen/x97"
+                        android:layout_height="@dimen/y90"
+                        android:id="@+id/img_switch"
+                        android:src="@drawable/img_switch_on"
+                        app:layout_constraintLeft_toLeftOf="@id/switch_constraint"
+                        app:layout_constraintRight_toRightOf="@id/switch_constraint"
+                        app:layout_constraintTop_toTopOf="@id/switch_constraint"
+                        android:layout_marginTop="@dimen/y59"
+                        tools:ignore="ContentDescription" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="已设防"
+                        android:id="@+id/txt_switch"
+                        android:layout_marginBottom="@dimen/y59"
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        app:layout_constraintLeft_toLeftOf="@id/switch_constraint"
+                        app:layout_constraintRight_toRightOf="@id/switch_constraint"
+                        app:layout_constraintBottom_toBottomOf="@id/switch_constraint"/>
+                </android.support.constraint.ConstraintLayout>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/black"/>
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/refresh_constraint"
+                    android:onClick="@{() -> presenter.refresh()}"
+                    android:layout_weight="1">
+
+
+                    <ImageView
+                        android:layout_width="@dimen/x80"
+                        android:layout_height="@dimen/y80"
+                        android:id="@+id/img_refresh"
+                        android:src="@drawable/img_refresh"
+                        app:layout_constraintLeft_toLeftOf="@+id/refresh_constraint"
+                        app:layout_constraintRight_toRightOf="@+id/refresh_constraint"
+                        app:layout_constraintTop_toTopOf="@+id/refresh_constraint"
+                        android:layout_marginTop="@dimen/y61"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="刷新"
+                        android:layout_marginBottom="@dimen/y59"
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        app:layout_constraintLeft_toLeftOf="@+id/refresh_constraint"
+                        app:layout_constraintRight_toRightOf="@+id/refresh_constraint"
+                        app:layout_constraintBottom_toBottomOf="@+id/refresh_constraint"/>
+                </android.support.constraint.ConstraintLayout>
+
+
+            </LinearLayout>
         </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
 
 </layout>

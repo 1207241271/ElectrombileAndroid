@@ -8,6 +8,7 @@ public class MqttCallbackConstant {
     public final static int NOTIFY_AUTOLOCK = 1;
     public final static int NOTIFY_STATUS   = 2;
     public final static int NOTIFY_BATTERY  = 3;
+    public final static int NOTIFY_RECORD   = 4;
 //    public final static String CMD = "cmd";
 //    public final static String GPS = "gps";
 //    public final static String ALARM = "alarm";

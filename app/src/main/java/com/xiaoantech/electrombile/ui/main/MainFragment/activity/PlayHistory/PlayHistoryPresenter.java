@@ -1,7 +1,6 @@
 package com.xiaoantech.electrombile.ui.main.MainFragment.activity.PlayHistory;
 
-import com.xiaoantech.electrombile.event.http.HttpEvent;
-import com.xiaoantech.electrombile.manager.HttpManager;
+import com.xiaoantech.electrombile.event.http.HttpGetEvent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -41,7 +40,7 @@ public class PlayHistoryPresenter implements PlayHistoryContract.Presenter{
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onHttpEvent(HttpEvent event){
+    public void onHttpEvent(HttpGetEvent event){
 
     }
 

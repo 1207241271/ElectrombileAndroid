@@ -35,9 +35,9 @@
                 app:layout_constraintTop_toTopOf="@+id/mapview_constraints">
             </com.baidu.mapapi.map.MapView>
 
-            <Button
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+            <ImageView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
                 android:id="@+id/btn_find_car"
                 android:background="@drawable/btn_map_history"
                 android:layout_marginTop="32dp"
@@ -49,9 +49,9 @@
 
 
 
-            <Button
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+            <ImageView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
                 android:id="@+id/btn_switch_map"
                 android:background="@drawable/btn_map_mode"
                 android:onClick="@{() -> presenter.changeMapType()}"
@@ -61,9 +61,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/btn_find_car" />
 
 
-            <Button
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+            <ImageView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
                 android:id="@+id/btn_goto_baiduMap"
                 android:background="@drawable/btn_map_guide"
                 android:onClick="@{() -> presenter.gotoFindCar()}"
@@ -72,19 +72,18 @@
                 android:layout_marginEnd="16dp"
                 app:layout_constraintRight_toRightOf="@+id/mapview_constraints"
 
-                tools:layout_editor_absoluteX="320dp" />
+                />
 
-            <Button
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+            <ImageView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
                 android:id="@+id/btn_location"
                 android:onClick="@{() -> presenter.refreshLocation()}"
                 android:background="@drawable/btn_map_locate"
                 app:layout_constraintBottom_toTopOf="@+id/view_txtback"
                 android:layout_marginBottom="16dp"
                 android:layout_marginEnd="16dp"
-                app:layout_constraintRight_toRightOf="@+id/mapview_constraints"
-                tools:layout_editor_absoluteX="320dp" />
+                app:layout_constraintRight_toRightOf="@+id/mapview_constraints" />
 
             <View
                 android:layout_width="0dp"
@@ -102,7 +101,7 @@
                 android:textColor="@color/gray"
                 android:textSize="15sp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintLeft_toLeftOf="@+id/view_txtback"
                 app:layout_constraintTop_toTopOf="@+id/view_txtback" />
             <TextView
@@ -111,9 +110,9 @@
                 android:id="@+id/txt_car_place"
                 android:text="车辆位置"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="42px"
                 android:layout_marginStart="16dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="16dp"
                 app:layout_constraintLeft_toLeftOf="@+id/view_txtback"
                 app:layout_constraintBottom_toBottomOf="@+id/view_txtback" />
             <TextView
@@ -121,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/txt_location_time"
                 android:text="时间"
-                android:textColor="@color/lightgray"
+                android:textColor="@color/gray"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="10dp"
                 app:layout_constraintRight_toRightOf="@+id/view_txtback"

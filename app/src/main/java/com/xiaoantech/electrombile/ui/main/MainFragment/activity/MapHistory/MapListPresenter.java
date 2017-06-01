@@ -2,9 +2,9 @@ package com.xiaoantech.electrombile.ui.main.MainFragment.activity.MapHistory;
 
 import android.util.Log;
 
-import com.xiaoantech.electrombile.event.http.HttpEvent;
+import com.xiaoantech.electrombile.event.http.HttpGetEvent;
 import com.xiaoantech.electrombile.manager.HistoryRouteManager;
-import com.xiaoantech.electrombile.manager.HttpManager;
+import com.xiaoantech.electrombile.http.HttpManager;
 import com.xiaoantech.electrombile.model.GPSPointModel;
 import com.xiaoantech.electrombile.utils.TimeUtil;
 
@@ -38,7 +38,6 @@ public class MapListPresenter implements MapListContract.Presenter{
     private final String TIMESTAMP = "timestamp";
 
     protected MapListPresenter(MapListContract.View mapListView){
-        subscribe();
         this.mMapListView = mapListView;
         mMapListView.setPresenter(this);
 
@@ -58,7 +57,6 @@ public class MapListPresenter implements MapListContract.Presenter{
 
     @Override
     public void getSevenDayRoute(int startIndex) {
-
         if (startIndex <0) startIndex = 0;
         if (startIndex >29) startIndex = 29;
 
@@ -104,7 +102,7 @@ public class MapListPresenter implements MapListContract.Presenter{
 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onHttpEvent(HttpEvent event){
+    public void onHttpEvent(HttpGetEvent event){
         try {
             if (event.getRequestType() == HttpManager.getType.GET_TYPE_ROUTES){
                 dealWithRouteInfo(event.getResult());

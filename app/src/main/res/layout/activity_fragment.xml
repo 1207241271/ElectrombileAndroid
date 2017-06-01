@@ -28,7 +28,7 @@
 
         <RadioGroup
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="48sp"
             android:gravity="bottom"
             android:orientation="horizontal"
             android:weightSum="3"

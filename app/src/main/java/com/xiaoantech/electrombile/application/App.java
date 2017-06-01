@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 
+import com.avos.avoscloud.AVAnalytics;
 import com.avos.avoscloud.AVOSCloud;
 import com.avos.avoscloud.AVUser;
 import com.baidu.mapapi.SDKInitializer;
@@ -13,6 +14,8 @@ import com.xiaoantech.electrombile.mqtt.MqttManager;
 import com.xiaoantech.electrombile.mqtt.MqttPublishManager;
 import com.xiaoantech.electrombile.ui.login.LoginMain.LoginMainActivity;
 import com.xiaoantech.electrombile.ui.main.FragmentMainActivity;
+
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * Created by jk on 16-10-26.
@@ -24,7 +27,6 @@ import com.xiaoantech.electrombile.ui.main.FragmentMainActivity;
 public class App extends Application {
 
     private static Context  context;
-
     public static Context getContext(){
         return context;
     }
@@ -34,41 +36,23 @@ public class App extends Application {
         super.onCreate();
         context = getApplicationContext();
         MqttManager.getInstance().createConnect();
+        //LeanCloud
         SDKInitializer.initialize(this);
         AVOSCloud.initialize(this,"5wk8ccseci7lnss55xfxdgj9xn77hxg3rppsu16o83fydjjn","yovqy5zy16og43zwew8i6qmtkp2y6r9b18zerha0fqi5dqsw");
-        checkUserStatus();
-    }
+        AVAnalytics.enableCrashReport(this,true);
 
 
-    private void checkUserStatus(){
-        AVUser user = AVUser.getCurrentUser();
-        if (null != user){
-            //已经有登陆状态
-            if(null != LocalDataManager.getInstance().getIMEI()) {
-                MqttManager.getInstance().subscribe(LocalDataManager.getInstance().getIMEI());
-                MqttPublishManager.getInstance().getStatus(LocalDataManager.getInstance().getIMEI());
-                gotoFragmentActivity();
-
-                //TODO: 暂时直接从服务器获取，之后本地化
-                BasicDataManager.getInstance().fetchBasicDataIMEIList();
-            }else {
-                gotoLoginActivity();
-            }
-        }else {
-            gotoLoginActivity();
+        //JPush
+        try {
+            JPushInterface.setDebugMode(true);
+            JPushInterface.init(this);
+            JPushInterface.setLatestNotificationNumber(this,1);
+        }catch (Exception e){
+            e.printStackTrace();
         }
+
+
     }
 
-    private void gotoLoginActivity(){
-        Intent intent = new Intent(this, LoginMainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
-
-    private void gotoFragmentActivity(){
-        Intent intent = new Intent(this, FragmentMainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
 
 }

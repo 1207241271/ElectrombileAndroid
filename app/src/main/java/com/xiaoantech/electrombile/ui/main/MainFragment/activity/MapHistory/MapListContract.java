@@ -1,7 +1,5 @@
 package com.xiaoantech.electrombile.ui.main.MainFragment.activity.MapHistory;
 
-import android.databinding.tool.util.L;
-
 import com.xiaoantech.electrombile.base.BasePresenter;
 import com.xiaoantech.electrombile.base.BaseView;
 import com.xiaoantech.electrombile.model.GPSPointModel;

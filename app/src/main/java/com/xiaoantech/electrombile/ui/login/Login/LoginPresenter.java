@@ -59,7 +59,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                 if (e == null){
                     if(avUser != null){
                         if (avUser.isMobilePhoneVerified()){
-                            mLoginView.loginSuccess();
+                            loginSuccess(avUser);
                         }else {
                             mLoginView.showToast("该手机号未进行验证！");
                         }

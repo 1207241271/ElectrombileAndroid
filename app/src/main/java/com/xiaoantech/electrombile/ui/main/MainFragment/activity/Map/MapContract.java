@@ -23,12 +23,12 @@ public interface MapContract {
         void changeMapType();
 
         void gotoMapList();
-
-        void gotoFindCar();
     }
 
 
     interface Presenter extends BasePresenter{
+        void getLatestHistoryLocation();
+
         void refreshLocation();
 
         void changeMapType();

@@ -2,11 +2,13 @@ package com.xiaoantech.electrombile.base;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.xiaoantech.electrombile.constant.TimerConstant;
@@ -33,9 +35,11 @@ public abstract class BaseFragment extends Fragment {
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext = getActivity();
         mProgressDialog = new ProgressDialog(mContext);
 
     }
+
     public void showToast(String errorMeg) {
         Toast.makeText(mContext,errorMeg,Toast.LENGTH_SHORT).show();
         mProgressDialog.cancel();
@@ -55,5 +59,8 @@ public abstract class BaseFragment extends Fragment {
     public void hideWaitingDialog() {
         mProgressDialog.cancel();
     }
+
+
+
 
 }

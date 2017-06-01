@@ -20,7 +20,7 @@ public interface UserInfoReviseContract {
         void changeIcon();
         void chooseSex();
         void chooseBirthDate();
-
+        void saveImage();
         void confirmModify();
     }
 }

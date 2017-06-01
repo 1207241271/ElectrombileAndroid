@@ -37,8 +37,8 @@ public class EventBusConstant {
     public enum notifyType{
         NOTIFY_TYPE_AUTOLOCK,
         NOTIFY_TYPE_STATUS,
-        NOTIFY_TYPE_BATTERY
-
+        NOTIFY_TYPE_BATTERY,
+        NOTIFY_TYPE_RECORD
     }
 
 //    public enum carSituationType{

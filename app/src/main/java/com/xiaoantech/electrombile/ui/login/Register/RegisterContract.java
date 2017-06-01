@@ -13,6 +13,8 @@ public interface RegisterContract  {
         void showToast(String errorMsg);
 
         void finishRegister();
+
+        void changeIdentifiedButtonStatus(boolean isEnable,int secondLeft);
     }
 
 

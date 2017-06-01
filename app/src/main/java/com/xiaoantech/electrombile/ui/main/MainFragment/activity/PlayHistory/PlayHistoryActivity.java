@@ -44,6 +44,8 @@ public class PlayHistoryActivity extends BaseAcitivity implements PlayHistoryCon
     private ActivityPlayhistoryBinding mBinding;
     private PlayHistoryContract.Presenter   mPresenter;
     private Marker      carMarker;
+    private Marker      startMaker;
+    private Marker      endMaker;
     private LatLngBounds mBounds;
     private int mCurrentPointIndex;
     private int mPlaySpeed;
@@ -148,7 +150,7 @@ public class PlayHistoryActivity extends BaseAcitivity implements PlayHistoryCon
         for (GPSPointModel gpsPointModel:pointList){
             points.add(gpsPointModel.getBaiduPoint());
         }
-        OverlayOptions overlayOptions = new PolylineOptions().points(points).width(15).color(0xFF0000);
+        OverlayOptions overlayOptions = new PolylineOptions().points(points).width(15).color(getResources().getColor(R.color.history_line_color));
         mBaiduMap.addOverlay(overlayOptions);
     }
 
@@ -180,12 +182,22 @@ public class PlayHistoryActivity extends BaseAcitivity implements PlayHistoryCon
     }
 
     private void initMarker(){
-        BitmapDescriptor bitMap = BitmapDescriptorFactory.fromResource(R.drawable.online);
+        BitmapDescriptor bitMap = BitmapDescriptorFactory.fromResource(R.drawable.img_map_location);
         MarkerOptions options = new MarkerOptions().position(pointList.get(0).getBaiduPoint()).icon(bitMap);
-        mBaiduMap.addOverlay(options);
+
 
         carMarker = (Marker)mBaiduMap.addOverlay(options);
+        carMarker.setIcon(bitMap);
         carMarker.setPosition(pointList.get(0).getBaiduPoint());
+
+        BitmapDescriptor bitMapStart = BitmapDescriptorFactory.fromResource(R.drawable.line_start);
+        MarkerOptions optionsStart = new MarkerOptions().position(pointList.get(0).getBaiduPoint()).icon(bitMapStart);
+        mBaiduMap.addOverlay(optionsStart);
+
+
+        BitmapDescriptor bitMapEnd = BitmapDescriptorFactory.fromResource(R.drawable.line_end);
+        MarkerOptions optionsEnd = new MarkerOptions().position(pointList.get(pointList.size()-1).getBaiduPoint()).icon(bitMapEnd);
+        mBaiduMap.addOverlay(optionsEnd);
 
     }
 
@@ -213,7 +225,7 @@ public class PlayHistoryActivity extends BaseAcitivity implements PlayHistoryCon
     }
 
     private void playPause(){
-        mBinding.playBtn.setText("播放");
+        mBinding.playBtn.setBackground(getResources().getDrawable(R.drawable.btn_play));
         mPlayStatus = playStatus.PLAY_STATUS_PAUSE;
     }
 
@@ -223,7 +235,7 @@ public class PlayHistoryActivity extends BaseAcitivity implements PlayHistoryCon
             mCurrentPointIndex = 0;
         }
         mPlayStatus = playStatus.PLAY_STATUS_PLAYING;
-        mBinding.playBtn.setText("暂停");
+        mBinding.playBtn.setBackground(getResources().getDrawable(R.drawable.btn_play_pause));
     }
 
     @Override
@@ -239,13 +251,13 @@ public class PlayHistoryActivity extends BaseAcitivity implements PlayHistoryCon
     public void switchPlaySpeed() {
         if (mPlaySpeed == 0 || mPlaySpeed == 1){
             mPlaySpeed = 2;
-            mBinding.speedBtn.setText("x2");
+            mBinding.speedBtn.setBackground(getResources().getDrawable(R.drawable.btn_twice_speed));
         }else if (mPlaySpeed == 2){
             mPlaySpeed = 5;
-            mBinding.speedBtn.setText("x5");
+            mBinding.speedBtn.setBackground(getResources().getDrawable(R.drawable.btn_fifth_speed));
         }else if (mPlaySpeed == 5){
             mPlaySpeed = 1;
-            mBinding.speedBtn.setText("x1");
+            mBinding.speedBtn.setBackground(getResources().getDrawable(R.drawable.btn_once_speed));
         }
     }
 

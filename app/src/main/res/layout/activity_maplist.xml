@@ -7,13 +7,19 @@
     <include
         android:id="@+id/navigation"
         layout="@layout/bar_navigation_title"/>
-    <de.halfbit.pinnedsection.PinnedSectionListView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@android:id/list"
+    <com.xiaoantech.electrombile.widget.RefreshLayout
+        android:id="@+id/swipe_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:divider="@null"
-        android:footerDividersEnabled="false"
-        android:headerDividersEnabled="false"
-        />
+        android:layout_height="match_parent">
+        <de.halfbit.pinnedsection.PinnedSectionListView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"
+            android:footerDividersEnabled="false"
+            android:headerDividersEnabled="false"
+            />
+    </com.xiaoantech.electrombile.widget.RefreshLayout>
+
     </LinearLayout>

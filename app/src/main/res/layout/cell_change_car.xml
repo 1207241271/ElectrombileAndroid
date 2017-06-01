@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/txt_car_name"
             android:text="车辆一"
-            android:textSize="20sp"
+            android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
             app:layout_constraintCenterY_toCenterY="@+id/constraintLayout"/>
         <ImageView

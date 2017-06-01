@@ -22,14 +22,14 @@
         tools:layout_editor_absoluteY="80dp"
         tools:ignore="MissingConstraints">
 
-        <TextView
+        <ImageView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:text="info"
             android:gravity="center"
+            android:src="@drawable/service"
             app:layout_constraintRight_toRightOf="@+id/constraintLayout_fragment_info"
             app:layout_constraintLeft_toLeftOf="@+id/constraintLayout_fragment_info"
-            app:layout_constraintHorizontal_bias="0.51"
             app:layout_constraintTop_toTopOf="@+id/constraintLayout_fragment_info"
             app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_fragment_info" />
     </android.support.constraint.ConstraintLayout>

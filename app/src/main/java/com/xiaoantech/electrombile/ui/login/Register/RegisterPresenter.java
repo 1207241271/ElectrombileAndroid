@@ -1,5 +1,7 @@
 package com.xiaoantech.electrombile.ui.login.Register;
 
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 import com.avos.avoscloud.AVException;
@@ -11,10 +13,13 @@ import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.RequestMobileCodeCallback;
 import com.avos.avoscloud.SaveCallback;
 import com.avos.avoscloud.SignUpCallback;
+import com.xiaoantech.electrombile.constant.HandlerConstant;
 import com.xiaoantech.electrombile.constant.LeanCloudConstant;
 import com.xiaoantech.electrombile.utils.StringUtil;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by yangxu on 2016/10/31.
@@ -23,6 +28,32 @@ import java.util.List;
 public class RegisterPresenter implements RegisterContract.Presenter{
     private final static String     TAG = "RegisterPresenter";
     private RegisterContract.View   mRegisterView;
+    private Timer   timer;
+    private int     secondLeft;
+
+    private Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            if (msg.what == HandlerConstant.TimerWhat0){
+                secondLeft-- ;
+                if (secondLeft <= 0){
+                    timer.cancel();
+                    secondLeft = 60;
+                    mRegisterView.changeIdentifiedButtonStatus(true,60);
+                }
+                mRegisterView.changeIdentifiedButtonStatus(false,secondLeft);
+            }else if (msg.what == HandlerConstant.StartTimer){
+                timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        handler.sendEmptyMessage(HandlerConstant.TimerWhat0);
+                    }
+                },1000,1000);
+            }
+            return true;
+        }
+    });
 
     protected RegisterPresenter(RegisterContract.View registerView){
         this.mRegisterView = registerView;
@@ -41,6 +72,8 @@ public class RegisterPresenter implements RegisterContract.Presenter{
 
     @Override
     public void getIdentifiedCode(final String phoneNum) {
+        secondLeft = 60 ;
+        handler.sendEmptyMessage(HandlerConstant.StartTimer);
         if (StringUtil.isEmpty(phoneNum) || phoneNum.length() != 11){
             mRegisterView.showToast("请输入正确的手机号！");
             return;
@@ -55,7 +88,10 @@ public class RegisterPresenter implements RegisterContract.Presenter{
             @Override
             public void done(AVException e) {
                 if (e == null){
+                    handler.sendEmptyMessage(HandlerConstant.StartTimer);
                     mRegisterView.showToast("验证码获取成功！");
+                }else if(e.getCode() == 127){
+                    mRegisterView.showToast("无效的手机号码");
                 }else {
                     checkSignUpOrNotVerified(phoneNum);
                 }
@@ -72,7 +108,7 @@ public class RegisterPresenter implements RegisterContract.Presenter{
             @Override
             public void done(List<AVObject> list, AVException e) {
                 if (null == e){
-                    if (list.size() < 0 ){
+                    if (list.size() <= 0 ){
                         //未知错误
                         mRegisterView.showToast("未知错误！");
                     }else {

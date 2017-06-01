@@ -18,23 +18,35 @@ public interface MainFragmentContract {
     interface View extends BaseView<Presenter>{
         void showWeather(int temperature,String weather);
         void changeFenceStatus(Boolean isOn,boolean isGet);
+        void changeAutoLockStatus(Boolean isOn,int period);
         void changeBattery(int battery,boolean showTip);
         void changeItinerary(int itinerary);
+        void changeLockStatus(boolean isOn);
         void changeGPSPoint(LatLng point);
         void changePlaceInfo(String placeInfo);
         void changeCar();
         void gotoMap();
         void showWeatherDialog(JSONObject weatherInfo,String placeInfo);
+        void gotoMessage();
+        void gotoHistory();
+        void setGPSSignal(boolean isGPS);
+        void changeBackground(boolean isOn);
+
+        void changeSignal(int level);
     }
 
     interface Presenter extends BasePresenter{
+        void refresh();
+
+        void setStatusFromString(String string);
+
         void showWeatherInfo();
 
         List<Map<String,Object>> getCarListInfo();
 
         void changeFenceStatus();
 
-        void getBattery();
+        void changeLockStatus();
 
         void getItinerary();
 
@@ -43,5 +55,11 @@ public interface MainFragmentContract {
         void gotoMap();
 
         void changeCar();
+
+        void gotoMessage();
+
+        void gotoHistory();
+
+        void getWeatherInfo();
     }
 }

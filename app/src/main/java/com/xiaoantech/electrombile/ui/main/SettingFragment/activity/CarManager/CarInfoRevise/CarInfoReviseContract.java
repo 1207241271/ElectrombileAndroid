@@ -14,5 +14,6 @@ public interface CarInfoReviseContract {
 
     interface Presenter extends BasePresenter{
         void confirmModification();
+        void changeBatteryType();
     }
 }

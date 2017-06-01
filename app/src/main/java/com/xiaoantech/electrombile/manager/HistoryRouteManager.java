@@ -1,6 +1,6 @@
 package com.xiaoantech.electrombile.manager;
 
-import com.lidroid.xutils.HttpUtils;
+import com.xiaoantech.electrombile.http.HttpManager;
 
 import java.util.Calendar;
 import java.util.Date;

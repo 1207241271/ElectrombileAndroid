@@ -2,7 +2,10 @@ package com.xiaoantech.electrombile.ui.main.SettingFragment.activity.UserManager
 
 import android.net.Uri;
 
+import com.avos.avoscloud.AVFile;
+import com.avos.avoscloud.AVUser;
 import com.xiaoantech.electrombile.ui.main.SettingFragment.activity.CarManager.CarInfoRevise.CarInfoReviseContract;
+import com.xiaoantech.electrombile.utils.BitmapUtils;
 
 /**
  * Created by yangxu on 2017/1/3.
@@ -47,4 +50,13 @@ public class UserInfoRevisePresenter implements UserInfoReviseContract.Presenter
         mUserInfoReviseView.confirmModify();
     }
 
+    @Override
+    public void saveImage() {
+        try {
+            AVFile file = AVFile.withFile(AVUser.getCurrentUser().getUsername()+".png", BitmapUtils.getImageFile("user.png"));
+            file.saveInBackground();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

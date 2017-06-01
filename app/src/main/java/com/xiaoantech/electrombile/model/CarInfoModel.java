@@ -1,7 +1,10 @@
 package com.xiaoantech.electrombile.model;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
+import com.xiaoantech.electrombile.R;
+import com.xiaoantech.electrombile.application.App;
 import com.xiaoantech.electrombile.utils.TimeUtil;
 
 import java.sql.Time;
@@ -18,13 +21,15 @@ public class CarInfoModel {
 
     public CarInfoModel(String IMEI,long bindTime){
         this.IMEI = IMEI;
+        this.name = IMEI;
         this.bindTime = bindTime;
+        this.cropImage = BitmapFactory.decodeResource(App.getContext().getResources(), R.drawable.othercar);
     }
     public CarInfoModel(String IMEI){
         this.IMEI = IMEI;
         this.name = IMEI;
-
         this.bindTime = TimeUtil.getCurrentTime();
+        this.cropImage = BitmapFactory.decodeResource(App.getContext().getResources(), R.drawable.othercar);
     }
 
     public void setName(String name) {

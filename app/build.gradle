@@ -10,16 +10,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        useLibrary 'org.apache.http.legacy'
 
-        ndk {
-            abiFilters 'armeabi', 'armeabi-v7a', 'mips' , 'x86' , 'x86_64' , 'mips64'
-        }
 
-        manifestPlaceholders = [
-                JPUSH_PKGNAME : applicationId,
-                JPUSH_APPKEY : "b6b26e2547ad8e5f6018b225", //JPush上注册的包名对应的appkey.
-                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
-        ]
+
 
     }
     buildTypes {
@@ -29,11 +23,7 @@ android {
         }
     }
 
-    sourceSets {
-        main {
-            jniLibs.srcDir 'libs'
-        }
-    }
+
 
     productFlavors {
         general {}
@@ -75,6 +65,9 @@ android {
         enabled = true
     }
 }
+repositories {
+    jcenter()
+}
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -102,12 +95,8 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha2'
     testCompile 'junit:junit:4.12'
     compile 'com.google.android.gms:play-services-maps:9.4.0'
-    compile files('libs/baidumapapi_search_v4_1_1.jar')
-    compile files('libs/baidumapapi_util_v4_1_1.jar')
-    compile files('libs/baidumapapi_base_v4_1_1.jar')
-    compile files('libs/baidumapapi_radar_v4_1_1.jar')
-    compile files('libs/baidumapapi_cloud_v4_1_1.jar')
-    compile files('libs/baidumapapi_map_v4_1_1.jar')
-    compile 'cn.jiguang.sdk:jpush:3.0.0'
     compile files('libs/core.jar')
+    compile files('libs/BaiduLBS_Android.jar')
+    compile 'cn.bingoogolapple:bga-qrcodecore:1.1.7@aar'
+    compile 'cn.bingoogolapple:bga-zbar:1.1.7@aar'
 }

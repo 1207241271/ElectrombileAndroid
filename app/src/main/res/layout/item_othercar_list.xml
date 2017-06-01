@@ -29,7 +29,15 @@
         android:layout_marginStart="16dp"
         tools:layout_editor_absoluteY="17dp"
         android:id="@+id/txt_car_name"
-        android:textSize="15sp"
-        android:textColor="@color/avoscloud_feedback_thread_header_background" />
+        android:textSize="16sp"/>
 
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:id="@+id/delete_car"
+        android:src="@drawable/img_download_delete"
+        app:layout_constraintRight_toRightOf="@+id/constraintLayout"
+        app:layout_constraintCenterY_toCenterY="@+id/constraintLayout"
+        android:layout_marginRight="20dp"/>
+        
 </android.support.constraint.ConstraintLayout>

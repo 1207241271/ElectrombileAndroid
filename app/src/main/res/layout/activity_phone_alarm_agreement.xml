@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="presenter"
+            type="com.xiaoantech.electrombile.ui.main.SettingFragment.activity.SettingManager.PhoneAlarm.PhoneAlarmAgreement.PhoneAlarmAgreementContract.Presenter"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="360dp"
+                android:layout_height="551dp"
+                android:orientation="vertical"
+                android:id="@+id/linearLayout9">
+                <include
+                    android:id="@+id/navigation"
+                    layout="@layout/bar_navigation_title"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="\n1.电话报警属于试用阶段，可能存在延时、遗漏或者无法送达情况，若发生以上情况，请及时与客服反馈。\n\n2.电话报警会将报警信息通过电话方式告知，请您保持手机通信通畅，以免因欠费、自动拦截来电、无服务等情况造成无法接收报警。\n\n3.电话报警服务的最终解释权归属武汉小安科技有限公司。\n\n-试用阶段，每月有5次免费电话报警服务。\n-您可以不接听报警来电，未接听的报警不会扣除免费接听次数。\n-每月接听超过5次后，本月将无法接受电话报警，次月将自动恢复服务。\n\n\n为保证您能接到报警电话，而不被手机或安全软件拦截，我们需要获取访问您的通讯录的权利，以便将报警来电添加到您的通讯录中。"/>
+                <Button
+                    android:layout_width="340dp"
+                    android:layout_height="48dp"
+                    android:text="同意协议"
+                    android:background="@drawable/shape"
+                    android:layout_marginTop="100dp"
+                    android:id="@+id/btn_agree"
+                    android:onClick="@{() -> presenter.setPhoneAlarmPhone()}"
+                    android:layout_gravity="center"
+                    style="?android:attr/borderlessButtonStyle"/>
+            </LinearLayout>
+
+        </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+</layout>

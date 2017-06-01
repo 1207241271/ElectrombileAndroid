@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="#f8c035">
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_alignBaseline="@+id/navigation_title"
+        android:layout_alignBottom="@+id/navigation_title"
+        android:layout_alignParentEnd="true"
+        android:background="@null"
+        android:id="@+id/btn_next"
+        android:text="下一步"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/navigation_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="#212121"
+        android:textSize="17.33sp" />
+
+    <RelativeLayout
+        android:id = "@+id/navigation_back"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true">
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="13.33dp"
+            android:layout_width="15dp"
+            android:layout_height="26dp"
+            android:background="@drawable/img_back"/>
+
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

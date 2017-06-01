@@ -6,16 +6,24 @@ import com.baidu.mapapi.search.geocode.GeoCoder;
 import com.baidu.mapapi.search.geocode.OnGetGeoCoderResultListener;
 import com.baidu.mapapi.search.geocode.ReverseGeoCodeOption;
 import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
+import com.xiaoantech.electrombile.constant.HttpConstant;
 import com.xiaoantech.electrombile.constant.LayoutConstant;
 import com.xiaoantech.electrombile.constant.MqttCommonConstant;
 import com.xiaoantech.electrombile.event.cmd.LocationEvent;
+import com.xiaoantech.electrombile.event.http.HttpGetEvent;
+import com.xiaoantech.electrombile.event.http.httpPost.HttpPostGPSEvent;
+import com.xiaoantech.electrombile.http.HttpManager;
+import com.xiaoantech.electrombile.http.HttpPublishManager;
 import com.xiaoantech.electrombile.manager.BasicDataManager;
+import com.xiaoantech.electrombile.manager.LocalDataManager;
 import com.xiaoantech.electrombile.mqtt.MqttPublishManager;
+import com.xiaoantech.electrombile.utils.GPSConvertUtil;
 import com.xiaoantech.electrombile.utils.TimeUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -33,8 +41,6 @@ public class MapPresenter implements MapContract.Presenter,OnGetGeoCoderResultLi
 
         mSearch = GeoCoder.newInstance();
         mSearch.setOnGetGeoCodeResultListener(this);
-
-        MqttPublishManager.getInstance().getLocation(BasicDataManager.getInstance().getBindIMEI());
     }
 
     @Override
@@ -50,7 +56,14 @@ public class MapPresenter implements MapContract.Presenter,OnGetGeoCoderResultLi
     @Override
     public void refreshLocation() {
         mMapView.showWaitingDialog("正在查询");
-        MqttPublishManager.getInstance().getLocation(BasicDataManager.getInstance().getBindIMEI());
+        HttpPublishManager.getInstance().getGPS();
+
+    }
+
+    @Override
+    public void getLatestHistoryLocation() {
+        String url = LocalDataManager.getInstance().getHTTPHost()+ ":" +LocalDataManager.getInstance().getHTTPPort() + "/v1/history/"+BasicDataManager.getInstance().getBindIMEI();
+        HttpManager.getHttpResult(url, HttpManager.getType.GET_TYPE_GPS_POINTS);
     }
 
     @Override
@@ -79,12 +92,47 @@ public class MapPresenter implements MapContract.Presenter,OnGetGeoCoderResultLi
                 double lng = result.getDouble("lng");
                 long timestamp = result.getLong("timestamp");
                 LatLng point = new LatLng(lat,lng);
-                mMapView.changeGPSPoint(point);
+                mMapView.changeGPSPoint(GPSConvertUtil.convertFromCommToBdll09(point));
                 mMapView.changeDateInfo(TimeUtil.getMinuteStringFromTimeStamp(timestamp));
                 mSearch.reverseGeoCode(new ReverseGeoCodeOption().location(point));
             }
         }catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onHttpGetEvent(HttpGetEvent event){
+        if (event.getRequestType() == HttpManager.getType.GET_TYPE_GPS_POINTS){
+            try{
+                JSONObject jsonObject = new JSONObject(event.getResult());
+                JSONArray array = jsonObject.getJSONArray("gps");
+                if (array.length() > 0){
+                    JSONObject gps = array.getJSONObject(0);
+                    double lat = gps.getDouble("lat");
+                    double lng = gps.getDouble("lon");
+                    long timestamp = gps.getLong("timestamp");
+                    LatLng point = new LatLng(lat,lng);
+                    mMapView.changeGPSPoint(GPSConvertUtil.convertFromCommToBdll09(point));
+                    mMapView.changeDateInfo(TimeUtil.getMinuteStringFromTimeStamp(timestamp));
+                    mSearch.reverseGeoCode(new ReverseGeoCodeOption().location(point));
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Subscribe(threadMode =  ThreadMode.MAIN)
+    public void onHttpPostGPSEvent(HttpPostGPSEvent event){
+        if (event.getCode() == 0) {
+            LatLng point = new LatLng(event.getLat(), event.getLng());
+            mMapView.changeGPSPoint(GPSConvertUtil.convertFromCommToBdll09(point));
+            mMapView.changeDateInfo(TimeUtil.getMinuteStringFromTimeStamp(event.getTimestamp()));
+            mSearch.reverseGeoCode(new ReverseGeoCodeOption().location(point));
+            mMapView.showToast("查询成功");
+        }else {
+            dealWithErrorCode(event.getCode());
         }
     }
 
@@ -103,16 +151,49 @@ public class MapPresenter implements MapContract.Presenter,OnGetGeoCoderResultLi
 
     @Override
     public void gotoFindCar() {
-        mMapView.gotoFindCar();
+//        mMapView.gotoFindCar();
     }
 
     private void dealWithErrorCode(int errorCode){
-        if (errorCode == MqttCommonConstant.CODE_INTERNAL_ERR){
-            mMapView.showToast("服务器内部错误!");
-    }else  if (errorCode == MqttCommonConstant.CODE_DEVICE_OFFLINE){
-            mMapView.showToast("设备离线，请检查设备！");
-            //TODO:ErrorShow
+        String errStr = "";
+        switch (errorCode) {
+            case 100:
+                errStr = "服务器内部错误";
+                break;
+            case 101:
+                errStr = "请求设备号错误";
+                break;
+            case 102:
+                errStr = "无请求内容";
+                break;
+            case 103:
+                errStr = "请求内容错误";
+                break;
+            case 104:
+                errStr = "请求URL错误";
+                break;
+            case 105:
+                errStr = "请求范围过大";
+                break;
+            case 106:
+                errStr = "服务器无响应";
+                break;
+            case 107:
+                errStr = "服务器不在线";
+                break;
+            case 108:
+                errStr = "设备无响应";
+                break;
+            case 109:
+                errStr = "设备不在线";
+                break;
+            case 110:
+                errStr = "设备不在线";
+                break;
+            default:
+                break;
         }
+        mMapView.showToast(errStr);
     }
 
 

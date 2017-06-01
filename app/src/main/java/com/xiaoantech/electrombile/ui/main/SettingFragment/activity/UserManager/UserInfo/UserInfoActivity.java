@@ -2,6 +2,7 @@ package com.xiaoantech.electrombile.ui.main.SettingFragment.activity.UserManager
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import com.xiaoantech.electrombile.databinding.ActivityUserInfoBinding;
 import com.xiaoantech.electrombile.manager.LocalDataManager;
 import com.xiaoantech.electrombile.ui.AddDevice.InputIMEI.InputIMEIActivity;
 import com.xiaoantech.electrombile.ui.main.SettingFragment.activity.UserManager.UserInfoRevise.UserInfoReviseActivity;
+import com.xiaoantech.electrombile.utils.BitmapUtils;
 
 /**
  * Created by yangxu on 2016/12/14.
@@ -41,7 +43,10 @@ public class UserInfoActivity extends BaseAcitivity implements UserInfoContract.
                 UserInfoActivity.this.finish();
             }
         });
+
     }
+
+
 
     @Override
     public void setPresenter(UserInfoContract.Presenter presenter) {
@@ -75,5 +80,9 @@ public class UserInfoActivity extends BaseAcitivity implements UserInfoContract.
         mBinding.txtUserName.setText(LocalDataManager.getInstance().getUserName());
         mBinding.txtNickName.setText(LocalDataManager.getInstance().getNickName());
         mBinding.txtIdentityNum.setText(LocalDataManager.getInstance().getIdentityNum());
+        Bitmap bitmap = BitmapUtils.compressImageFromFile("user.png");
+        if (bitmap != null){
+            mBinding.headImage.setImageBitmap(bitmap);
+        }
     }
 }

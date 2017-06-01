@@ -3,6 +3,7 @@ package com.xiaoantech.electrombile.ui.login.Register;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,6 +13,7 @@ import com.xiaoantech.electrombile.base.BaseAcitivity;
 import com.xiaoantech.electrombile.databinding.ActivityRegisterBinding;
 import com.xiaoantech.electrombile.ui.AddDevice.InputIMEI.InputIMEIActivity;
 import com.xiaoantech.electrombile.ui.login.Login.LoginActivity;
+import com.xiaoantech.electrombile.ui.main.MainFragment.MainFragment;
 import com.xiaoantech.electrombile.ui.main.SettingFragment.activity.UserManager.UserInfoRevise.UserInfoReviseActivity;
 
 /**
@@ -44,6 +46,12 @@ public class RegisterActivity extends BaseAcitivity implements RegisterContract.
                 RegisterActivity.this.finish();
             }
         });
+        ((Button)mBinding.navigation.findViewById(R.id.btn_next)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenter.register(mBinding.phoneNumEdtTxt.getText().toString(), mBinding.identifiedCodeEdtTxt.getText().toString(), mBinding.passwordEdtTxt.getText().toString(), mBinding.passwordConfirmEdtTxt.getText().toString());
+            }
+        });
     }
 
     @Override
@@ -58,7 +66,20 @@ public class RegisterActivity extends BaseAcitivity implements RegisterContract.
 
     @Override
     public void finishRegister(){
-        Intent intent = new Intent(RegisterActivity.this, UserInfoReviseActivity.class);
+        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void changeIdentifiedButtonStatus(boolean isEnable, int secondLeft) {
+        if (isEnable){
+            mBinding.identifiedCodeBtn.setBackground(getResources().getDrawable(R.drawable.corners_bg_orange));
+            mBinding.identifiedCodeBtn.setText("接收验证码");
+            mBinding.identifiedCodeBtn.setEnabled(true);
+        }else {
+            mBinding.identifiedCodeBtn.setBackground(getResources().getDrawable(R.drawable.corners_bg_gray));
+            mBinding.identifiedCodeBtn.setText(secondLeft+"s重新发送");
+            mBinding.identifiedCodeBtn.setEnabled(false);
+        }
     }
 }

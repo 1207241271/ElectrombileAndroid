@@ -4,11 +4,15 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
+import com.avos.avoscloud.DeleteCallback;
 import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.SaveCallback;
 import com.xiaoantech.electrombile.constant.LeanCloudConstant;
+import com.xiaoantech.electrombile.event.LeanCloud.DeleteEvent;
 import com.xiaoantech.electrombile.manager.BasicDataManager;
 import com.xiaoantech.electrombile.manager.JPushManager;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -81,6 +85,40 @@ public class LeanCloudManager {
                         checkIsBindOK(LeanCloudConstant.LeanCloudBindResult.LEAN_CLOUD_BIND_RESULT_BIND_MUCH, 0,IMEI);
                     }else {
                         checkIsBindOK(null,LeanCloudConstant.BindFlagBIND,IMEI);
+                    }
+                }else {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void deleteIMEI(final String IMEI){
+        AVQuery<AVObject> query = new AVQuery<>(LeanCloudConstant.BindTable);
+        query.whereEqualTo(LeanCloudConstant.IMEI,IMEI);
+        query.whereEqualTo(LeanCloudConstant.User,AVUser.getCurrentUser());
+        query.findInBackground(new FindCallback<AVObject>() {
+            @Override
+            public void done(List<AVObject> list, AVException e) {
+                if (null == e){
+                    if (list.size() > 0 ){
+                        AVObject object = list.get(0);
+                        try {
+                            object.deleteInBackground(new DeleteCallback() {
+                                @Override
+                                public void done(AVException e) {
+                                    if (e == null){
+                                        EventBus.getDefault().post(new DeleteEvent(true));
+                                    }
+                                }
+                            });
+
+                        }catch (Exception e1){
+                            e1.printStackTrace();
+                            EventBus.getDefault().post(new DeleteEvent(false));
+                        }
+                    }else {
+                        EventBus.getDefault().post(new DeleteEvent(false));
                     }
                 }else {
                     e.printStackTrace();

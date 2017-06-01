@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
+    <color name="history_line_color">#00a0e9</color>
     <color name="appOrange">#f7c035</color>
     <color name="grey_txt">#e7e7e7</color>
     <color name="button_grey">#aaaaaa</color>
     <color name="button_yellow">#f8c035</color>
+    <color name="background_lightgrey">#F2F2F2</color>
     <color name="background_grey">#ebebeb</color>
     <color name="white">#FFFFFF</color><!--白色 -->
     <color name="ivory">#FFFFF0</color><!--象牙色 -->
