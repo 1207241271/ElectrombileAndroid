@@ -143,7 +143,7 @@ public class MqttCallbackBus implements MqttCallback {
     }
     private void receivedNOTIFY(JSONObject jsonObject) {
         try {
-            int notify = jsonObject.getInt(MqttCommonConstant.NOTIFY);
+            int notify = jsonObject.getInt("notify");
             switch (notify) {
                 case MqttCallbackConstant.NOTIFY_AUTOLOCK:
                     EventBus.getDefault().post(new com.xiaoantech.electrombile.event.notify.AutoLockEvent(EventBusConstant.notifyType.NOTIFY_TYPE_AUTOLOCK, jsonObject));
