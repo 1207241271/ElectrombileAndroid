@@ -27,10 +27,12 @@ import com.xiaoantech.electrombile.event.http.httpPost.HttpPostLockGetEvent;
 import com.xiaoantech.electrombile.event.http.httpPost.HttpPostLockSetEvent;
 import com.xiaoantech.electrombile.event.http.httpPost.HttpPostLogEvent;
 import com.xiaoantech.electrombile.event.http.httpPost.HttpPostResetEvent;
+import com.xiaoantech.electrombile.event.http.httpPost.HttpPostSeatOpenEvent;
 import com.xiaoantech.electrombile.event.http.httpPost.HttpPostServerEvent;
 import com.xiaoantech.electrombile.event.http.httpPost.HttpPostStatusEvent;
 import com.xiaoantech.electrombile.event.http.httpPost.HttpPostSwitchGetEvent;
 import com.xiaoantech.electrombile.event.http.httpPost.HttpPostSwitchSetEvent;
+import com.xiaoantech.electrombile.event.http.httpPost.HttpPostWheelSetEvent;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -126,7 +128,12 @@ public class HttpCallback {
             case HTTP_CMD_DEL_BLUETOOTH_IMEI:
                 EventBus.getDefault().post(new HttpPostBluetoothDelEvent(result));
                 break;
-
+            case HTTP_CMD_SET_WHEEL:
+                EventBus.getDefault().post(new HttpPostWheelSetEvent(result));
+                break;
+            case HTTP_CMD_OPEN_SEAT:
+                EventBus.getDefault().post(new HttpPostSeatOpenEvent(result));
+                break;
         }
     }
 

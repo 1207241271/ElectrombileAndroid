@@ -3,6 +3,8 @@ package com.xiaoantech.electrombile.ui.main.SettingFragment.activity.SettingMana
 
 import com.xiaoantech.electrombile.event.http.httpPost.HttpPostElectricSetEvent;
 import com.xiaoantech.electrombile.event.http.httpPost.HttpPostLockSetEvent;
+import com.xiaoantech.electrombile.event.http.httpPost.HttpPostSeatOpenEvent;
+import com.xiaoantech.electrombile.event.http.httpPost.HttpPostWheelSetEvent;
 import com.xiaoantech.electrombile.http.HttpPublishManager;
 import com.xiaoantech.electrombile.manager.BasicDataManager;
 import com.xiaoantech.electrombile.http.HttpManager;
@@ -24,6 +26,7 @@ public class SettingManagerPresenter implements SettingManagerContract.Presenter
     private  SettingManagerContract.View mSettingManagerView;
     private boolean isLinkOn;
     private boolean isLockOn;
+    private boolean isWheelOn;
 
     protected SettingManagerPresenter(SettingManagerContract.View settingManagerView){
         this.mSettingManagerView = settingManagerView;
@@ -80,6 +83,16 @@ public class SettingManagerPresenter implements SettingManagerContract.Presenter
     }
 
     @Override
+    public void rearWheelSwitchChange(boolean isOn) {
+        mSettingManagerView.showWaitingDialog("正在设置");
+        isWheelOn = isOn;
+        if (isOn)
+            HttpPublishManager.getInstance().setWheelLockOff();
+        else
+            HttpPublishManager.getInstance().setWheelLockOn();
+    }
+
+    @Override
     public void lockSwitchChange(boolean isOn) {
         mSettingManagerView.showWaitingDialog("正在设置");
         isLockOn = isOn;
@@ -87,6 +100,12 @@ public class SettingManagerPresenter implements SettingManagerContract.Presenter
             HttpPublishManager.getInstance().setLockOn();
         else
             HttpPublishManager.getInstance().setLockOFF();
+    }
+
+    @Override
+    public void seatLockOpen() {
+        mSettingManagerView.showWaitingDialog("正在设置");
+        HttpPublishManager.getInstance().openSeatLock();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -133,5 +152,27 @@ public class SettingManagerPresenter implements SettingManagerContract.Presenter
         }
         mSettingManagerView.setLock(!isLockOn);
         LocalDataManager.getInstance().setLockStatus(!isLockOn);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onHttpPostWheelSetEvent(HttpPostWheelSetEvent event){
+        if (event.getCode() == ErrorCodeConvertUtil.HTTPCodeSuccess){
+            mSettingManagerView.setWheelLock(isWheelOn);
+            mSettingManagerView.showToast("设置成功");
+            LocalDataManager.getInstance().setWheelLock(isWheelOn);
+            return;
+        }else
+            mSettingManagerView.showToast(ErrorCodeConvertUtil.getHttpErrorStrWithCode(event.getCode()));
+        mSettingManagerView.setWheelLock(!isWheelOn);
+        LocalDataManager.getInstance().setWheelLock(!isWheelOn);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onHttpPostSeatOpenEvent(HttpPostSeatOpenEvent event){
+        if (event.getCode() == ErrorCodeConvertUtil.HTTPCodeSuccess) {
+            mSettingManagerView.showToast("设置成功");
+        }else {
+            mSettingManagerView.showToast(ErrorCodeConvertUtil.getHttpErrorStrWithCode(event.getCode()));
+        }
     }
 }

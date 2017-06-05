@@ -17,6 +17,7 @@ public interface SettingManagerContract {
         void logout();
         void setSwitch(boolean isChecked);
         void setLock(boolean isChecked);
+        void setWheelLock(boolean isChecked);
         void PhoneAlarmOpen(boolean isOn);
     }
 
@@ -28,6 +29,8 @@ public interface SettingManagerContract {
         void logout();
         void relevenceSwitchChange(boolean isOn);
         void lockSwitchChange(boolean isOn);
+        void rearWheelSwitchChange(boolean isOn);
+        void seatLockOpen();
         void isPhoneAlarmOpen();
     }
 }

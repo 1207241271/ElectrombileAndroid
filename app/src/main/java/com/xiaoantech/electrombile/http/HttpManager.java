@@ -43,7 +43,9 @@ public class HttpManager {
         POST_TYPE_ELECTRICLOCK_LINK_SET_ON,
         POST_TYPE_ELECTRICLOCK_LINK_SET_OFF,
         POST_TYPE_DEFAULT,
-        POST_TYPE_PHONE
+        POST_TYPE_PHONE,
+        POST_TYPE_WHEEL,
+        POST_TYPE_SEAT
     }
     public enum putType{
         PUT_TYPE_ALARMPHONE

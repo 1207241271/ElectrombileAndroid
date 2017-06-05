@@ -62,6 +62,7 @@ public class SettingManagerActivity extends BaseAcitivity implements SettingMana
         });
         mBinding.switchRelevence.setOnCheckedChangeListener(this);
         mBinding.switchLock.setOnCheckedChangeListener(this);
+        mBinding.switchRearwheel.setOnCheckedChangeListener(this);
 
     }
 
@@ -89,6 +90,12 @@ public class SettingManagerActivity extends BaseAcitivity implements SettingMana
                 mPresenter.lockSwitchChange(true);
             }else {
                 mPresenter.lockSwitchChange(false);
+            }
+        }else if (buttonView.equals(mBinding.switchRearwheel)){
+            if (isChecked){
+                mPresenter.rearWheelSwitchChange(true);
+            }else {
+                mPresenter.rearWheelSwitchChange(false);
             }
         }
     }
@@ -158,11 +165,19 @@ public class SettingManagerActivity extends BaseAcitivity implements SettingMana
     }
 
     @Override
+    public void setWheelLock(boolean isChecked) {
+        mBinding.switchRearwheel.setOnCheckedChangeListener(null);
+        mBinding.switchRearwheel.setChecked(isChecked);
+        mBinding.switchRearwheel.setOnCheckedChangeListener(this);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         mPresenter.subscribe();
         setSwitch(LocalDataManager.getInstance().getIsRelevanceOn());
         setLock(LocalDataManager.getInstance().getLockStatus());
+        setWheelLock(LocalDataManager.getInstance().getWheelLock());
     }
 
     @Override

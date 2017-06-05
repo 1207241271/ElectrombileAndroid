@@ -102,7 +102,7 @@ public class MapListPresenter implements MapListContract.Presenter{
 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onHttpEvent(HttpGetEvent event){
+    public void onHttpGetEvent(HttpGetEvent event){
         try {
             if (event.getRequestType() == HttpManager.getType.GET_TYPE_ROUTES){
                 dealWithRouteInfo(event.getResult());

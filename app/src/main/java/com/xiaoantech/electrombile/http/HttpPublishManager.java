@@ -263,6 +263,30 @@ public class HttpPublishManager {
         }
     }
 
+    public void setWheelLockOn(){
+        try {
+            JSONObject param = new JSONObject();
+            param.put("sw",1);
+            HttpManager.postHttpCmdResult(getDeviceUrl(),HttpManager.postType.POST_TYPE_WHEEL, HttpConstant.HttpCmd.HTTP_CMD_SET_WHEEL,getStringWithCmdAndParam(28,param));
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void setWheelLockOff(){
+        try {
+            JSONObject param = new JSONObject();
+            param.put("sw",0);
+            HttpManager.postHttpCmdResult(getDeviceUrl(),HttpManager.postType.POST_TYPE_WHEEL, HttpConstant.HttpCmd.HTTP_CMD_SET_WHEEL,getStringWithCmdAndParam(28,param));
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void openSeatLock(){
+        HttpManager.postHttpCmdResult(getDeviceUrl(),HttpManager.postType.POST_TYPE_SEAT, HttpConstant.HttpCmd.HTTP_CMD_OPEN_SEAT,getStringWithCmd(29));
+    }
+
     private String getDeviceUrl(){
         return LocalDataManager.getInstance().getHTTPHost()+":"+LocalDataManager.getInstance().getHTTPPort()+"/v1/device";
     }

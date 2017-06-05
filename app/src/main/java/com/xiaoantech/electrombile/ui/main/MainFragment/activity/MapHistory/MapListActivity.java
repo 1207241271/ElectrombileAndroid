@@ -48,6 +48,8 @@ public class MapListActivity extends ListActivity implements MapListContract.Vie
     private RefreshLayout refreshLayout;
     private MyListAdapter myListAdapter;
     private List<List<Map<String,String>>> routeList;
+    private boolean isRefresh;
+    private boolean isLoad;
 
 
     protected void onCreate(Bundle savedInstanceState){
@@ -65,6 +67,8 @@ public class MapListActivity extends ListActivity implements MapListContract.Vie
 
         mPresenter = new MapListPresenter(this);
         mPresenter.getSevenDayRoute(refreshDate);
+        isLoad = false;
+        isRefresh = false;
         mProgressDialog = new ProgressDialog(this);
 
 
@@ -74,6 +78,7 @@ public class MapListActivity extends ListActivity implements MapListContract.Vie
             @Override
             public void onRefresh() {
                 refreshDate = 0;
+                isRefresh = true;
                 refreshLayout.post(new Runnable(){
                     @Override
                     public void run() {
@@ -87,6 +92,7 @@ public class MapListActivity extends ListActivity implements MapListContract.Vie
             @Override
             public void onLoad() {
                 refreshDate +=7;
+                isLoad = true;
                 refreshLayout.post(new Runnable(){
                     @Override
                     public void run() {
@@ -127,8 +133,14 @@ public class MapListActivity extends ListActivity implements MapListContract.Vie
         }else {
             myListAdapter.update(routeList);
         }
-        refreshLayout.setLoading(false);
-        refreshLayout.setRefreshing(false);
+        if (isLoad){
+            refreshLayout.setLoading(false);
+            isLoad = false;
+        }
+        if (isRefresh) {
+            refreshLayout.setRefreshing(false);
+            isRefresh = false;
+        }
     }
 
     @Override

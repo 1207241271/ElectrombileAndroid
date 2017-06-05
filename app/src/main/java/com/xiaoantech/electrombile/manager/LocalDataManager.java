@@ -77,6 +77,7 @@ public class LocalDataManager {
 
     private final String FenceStatus = "FenceStatus";
     private final String LockStatus = "FenceStatus";
+    private final String WheelLock = "WheelLock";
 
 
     public static LocalDataManager getInstance() {
@@ -383,5 +384,13 @@ public class LocalDataManager {
 
     public int getBatteryType() {
         return sharedPreferences.getInt(BatteryType,48);
+    }
+
+    public void setWheelLock(boolean wheelLock){
+        sharedPreferences.edit().putBoolean(WheelLock,wheelLock).apply();
+    }
+
+    public boolean getWheelLock(){
+        return sharedPreferences.getBoolean(WheelLock,false);
     }
 }

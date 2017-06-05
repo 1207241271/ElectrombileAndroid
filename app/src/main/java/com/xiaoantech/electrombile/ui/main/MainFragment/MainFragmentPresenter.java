@@ -382,6 +382,17 @@ public class MainFragmentPresenter implements MainFragmentContract.Presenter,OnG
                     //TODO:
                 }
             }
+            if (result.has("Mangguo")) {
+                JSONObject mangguo=result.getJSONObject("Mangguo");
+                if (mangguo.has("wheelLock")) {
+                    int wheelLockStatus = mangguo.getInt("wheelLock");
+                    if (wheelLockStatus == 1) {
+                        LocalDataManager.getInstance().setWheelLock(true);
+                    } else {
+                        LocalDataManager.getInstance().setWheelLock(false);
+                    }
+                }
+            }
         } catch (JSONException e){
             e.printStackTrace();
         }

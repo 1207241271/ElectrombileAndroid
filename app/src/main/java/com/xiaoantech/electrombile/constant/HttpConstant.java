@@ -40,5 +40,7 @@ public class HttpConstant {
         HTTP_CMD_SET_LINK_ELECTRICLOCK,
         HTTP_CMD_GET_LINK_ELECTRICLOCK,
         HTTP_CMD_DEL_BLUETOOTH_IMEI,
+        HTTP_CMD_SET_WHEEL,
+        HTTP_CMD_OPEN_SEAT
     }
 }

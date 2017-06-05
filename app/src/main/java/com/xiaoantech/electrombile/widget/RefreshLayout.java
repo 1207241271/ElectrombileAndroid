@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.AbsListView;
 import android.widget.ListView;
+import android.widget.NumberPicker;
 
 import com.xiaoantech.electrombile.R;
 
